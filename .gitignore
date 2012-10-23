@@ -13,3 +13,7 @@ build/*
 xcuserdata
 profile
 *.moved-aside
+
+# OS generated files
+.DS_Store
+Thumbs.db
