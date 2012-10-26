@@ -18,6 +18,7 @@
 		7A7E9A9E16375A53000AFF66 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A7E9A9D16375A53000AFF66 /* Default-568h@2x.png */; };
 		7A7E9AA116375A53000AFF66 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7E9A9F16375A53000AFF66 /* MainStoryboard.storyboard */; };
 		7A7E9AA416375A53000AFF66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E9AA316375A53000AFF66 /* ViewController.m */; };
+		AA93BA74163A31DD007BC9BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA93BA73163A31DD007BC9BC /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		7A7E9AA016375A53000AFF66 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		7A7E9AA216375A53000AFF66 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		7A7E9AA316375A53000AFF66 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AA93BA73163A31DD007BC9BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA93BA74163A31DD007BC9BC /* MapKit.framework in Frameworks */,
 				7A7E9A8816375A53000AFF66 /* UIKit.framework in Frameworks */,
 				7A7E9A8A16375A53000AFF66 /* Foundation.framework in Frameworks */,
 				7A7E9A8C16375A53000AFF66 /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +76,7 @@
 		7A7E9A8616375A53000AFF66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA93BA73163A31DD007BC9BC /* MapKit.framework */,
 				7A7E9A8716375A53000AFF66 /* UIKit.framework */,
 				7A7E9A8916375A53000AFF66 /* Foundation.framework */,
 				7A7E9A8B16375A53000AFF66 /* CoreGraphics.framework */,
@@ -290,6 +294,7 @@
 				7A7E9AA916375A53000AFF66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
