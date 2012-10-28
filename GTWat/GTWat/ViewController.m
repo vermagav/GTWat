@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "DataViewController.h"
 
 @interface ViewController ()
 
@@ -24,6 +25,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//  
+  //DataViewController* dvc = [[DataViewController alloc] init];
+  //[dvc.view setBackgroundColor:[UIColor whiteColor]];
+//  
+  //UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:dvc];
+//  [self presentViewController:navController animated:YES completion:nil];
+
+  
+  
+  [self performSegueWithIdentifier:@"PinSegue" sender:self];
 }
 
 @end

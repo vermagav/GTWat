@@ -18,7 +18,13 @@
 		7A7E9A9E16375A53000AFF66 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A7E9A9D16375A53000AFF66 /* Default-568h@2x.png */; };
 		7A7E9AA116375A53000AFF66 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7E9A9F16375A53000AFF66 /* MainStoryboard.storyboard */; };
 		7A7E9AA416375A53000AFF66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E9AA316375A53000AFF66 /* ViewController.m */; };
+		AA28870C163DD64500FE140C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28870B163DD64500FE140C /* SettingsViewController.m */; };
+		AA288711163DD82100FE140C /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA288710163DD82100FE140C /* Cache.m */; };
+		AA288715163DD84700FE140C /* SyncHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA288714163DD84700FE140C /* SyncHelper.m */; };
 		AA93BA74163A31DD007BC9BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA93BA73163A31DD007BC9BC /* MapKit.framework */; };
+		AAB2098D163DB42F003EEC55 /* DataView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2098C163DB42F003EEC55 /* DataView.m */; };
+		AAB20990163DB44A003EEC55 /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2098F163DB44A003EEC55 /* DataViewController.m */; };
+		AAB89AC7163DE4A5008FE9C4 /* ChoosePinTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB89AC6163DE4A5008FE9C4 /* ChoosePinTypeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +44,19 @@
 		7A7E9AA016375A53000AFF66 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		7A7E9AA216375A53000AFF66 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		7A7E9AA316375A53000AFF66 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AA28870A163DD64500FE140C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = SettingsView/SettingsViewController.h; sourceTree = "<group>"; };
+		AA28870B163DD64500FE140C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = SettingsView/SettingsViewController.m; sourceTree = "<group>"; };
+		AA28870F163DD82100FE140C /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cache.h; path = Backend/Cache/Cache.h; sourceTree = "<group>"; };
+		AA288710163DD82100FE140C /* Cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cache.m; path = Backend/Cache/Cache.m; sourceTree = "<group>"; };
+		AA288713163DD84700FE140C /* SyncHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncHelper.h; path = Backend/Cache/SyncHelper.h; sourceTree = "<group>"; };
+		AA288714163DD84700FE140C /* SyncHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncHelper.m; path = Backend/Cache/SyncHelper.m; sourceTree = "<group>"; };
 		AA93BA73163A31DD007BC9BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		AAB2098B163DB42F003EEC55 /* DataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataView.h; path = DataView/DataView.h; sourceTree = "<group>"; };
+		AAB2098C163DB42F003EEC55 /* DataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataView.m; path = DataView/DataView.m; sourceTree = "<group>"; };
+		AAB2098E163DB44A003EEC55 /* DataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataViewController.h; path = DataView/DataViewController.h; sourceTree = "<group>"; };
+		AAB2098F163DB44A003EEC55 /* DataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataViewController.m; path = DataView/DataViewController.m; sourceTree = "<group>"; };
+		AAB89AC5163DE4A5008FE9C4 /* ChoosePinTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChoosePinTypeViewController.h; path = DataView/ChoosePinView/ChoosePinTypeViewController.h; sourceTree = "<group>"; };
+		AAB89AC6163DE4A5008FE9C4 /* ChoosePinTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChoosePinTypeViewController.m; path = DataView/ChoosePinView/ChoosePinTypeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +105,9 @@
 		7A7E9A8D16375A53000AFF66 /* GTWat */ = {
 			isa = PBXGroup;
 			children = (
+				AA28870D163DD72700FE140C /* Backend */,
+				AA288708163DD62F00FE140C /* SettingsView */,
+				AAB20989163DB3F8003EEC55 /* DataView */,
 				7A7E9A9616375A53000AFF66 /* AppDelegate.h */,
 				7A7E9A9716375A53000AFF66 /* AppDelegate.m */,
 				7A7E9A9F16375A53000AFF66 /* MainStoryboard.storyboard */,
@@ -109,6 +130,55 @@
 				7A7E9A9D16375A53000AFF66 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AA288708163DD62F00FE140C /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				AA28870A163DD64500FE140C /* SettingsViewController.h */,
+				AA28870B163DD64500FE140C /* SettingsViewController.m */,
+			);
+			name = SettingsView;
+			sourceTree = "<group>";
+		};
+		AA28870D163DD72700FE140C /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				AA28870E163DD80300FE140C /* Cache */,
+			);
+			name = Backend;
+			sourceTree = "<group>";
+		};
+		AA28870E163DD80300FE140C /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				AA28870F163DD82100FE140C /* Cache.h */,
+				AA288710163DD82100FE140C /* Cache.m */,
+				AA288713163DD84700FE140C /* SyncHelper.h */,
+				AA288714163DD84700FE140C /* SyncHelper.m */,
+			);
+			name = Cache;
+			sourceTree = "<group>";
+		};
+		AAB20989163DB3F8003EEC55 /* DataView */ = {
+			isa = PBXGroup;
+			children = (
+				AAB89AC4163DE47F008FE9C4 /* ChoosePinTypeView */,
+				AAB2098B163DB42F003EEC55 /* DataView.h */,
+				AAB2098C163DB42F003EEC55 /* DataView.m */,
+				AAB2098E163DB44A003EEC55 /* DataViewController.h */,
+				AAB2098F163DB44A003EEC55 /* DataViewController.m */,
+			);
+			name = DataView;
+			sourceTree = "<group>";
+		};
+		AAB89AC4163DE47F008FE9C4 /* ChoosePinTypeView */ = {
+			isa = PBXGroup;
+			children = (
+				AAB89AC5163DE4A5008FE9C4 /* ChoosePinTypeViewController.h */,
+				AAB89AC6163DE4A5008FE9C4 /* ChoosePinTypeViewController.m */,
+			);
+			name = ChoosePinTypeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +250,12 @@
 				7A7E9A9416375A53000AFF66 /* main.m in Sources */,
 				7A7E9A9816375A53000AFF66 /* AppDelegate.m in Sources */,
 				7A7E9AA416375A53000AFF66 /* ViewController.m in Sources */,
+				AAB2098D163DB42F003EEC55 /* DataView.m in Sources */,
+				AAB20990163DB44A003EEC55 /* DataViewController.m in Sources */,
+				AA28870C163DD64500FE140C /* SettingsViewController.m in Sources */,
+				AA288711163DD82100FE140C /* Cache.m in Sources */,
+				AA288715163DD84700FE140C /* SyncHelper.m in Sources */,
+				AAB89AC7163DE4A5008FE9C4 /* ChoosePinTypeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
