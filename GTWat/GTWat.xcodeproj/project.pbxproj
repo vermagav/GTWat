@@ -19,12 +19,14 @@
 		7A7E9AA116375A53000AFF66 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7E9A9F16375A53000AFF66 /* MainStoryboard.storyboard */; };
 		7A7E9AA416375A53000AFF66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E9AA316375A53000AFF66 /* ViewController.m */; };
 		AA28870C163DD64500FE140C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28870B163DD64500FE140C /* SettingsViewController.m */; };
-		AA288711163DD82100FE140C /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA288710163DD82100FE140C /* Cache.m */; };
+		AA288711163DD82100FE140C /* Cache.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA288710163DD82100FE140C /* Cache.mm */; };
 		AA288715163DD84700FE140C /* SyncHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA288714163DD84700FE140C /* SyncHelper.m */; };
 		AA93BA74163A31DD007BC9BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA93BA73163A31DD007BC9BC /* MapKit.framework */; };
 		AAB2098D163DB42F003EEC55 /* DataView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2098C163DB42F003EEC55 /* DataView.m */; };
 		AAB20990163DB44A003EEC55 /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2098F163DB44A003EEC55 /* DataViewController.m */; };
 		AAB89AC7163DE4A5008FE9C4 /* ChoosePinTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB89AC6163DE4A5008FE9C4 /* ChoosePinTypeViewController.m */; };
+		AAC5B7A31646FE2F00BB2362 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC5B7A21646FE2F00BB2362 /* MapView.m */; };
+		AAD8B0101650700D00CE728F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD8B00F1650700D00CE728F /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +49,7 @@
 		AA28870A163DD64500FE140C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = SettingsView/SettingsViewController.h; sourceTree = "<group>"; };
 		AA28870B163DD64500FE140C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = SettingsView/SettingsViewController.m; sourceTree = "<group>"; };
 		AA28870F163DD82100FE140C /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cache.h; path = Backend/Cache/Cache.h; sourceTree = "<group>"; };
-		AA288710163DD82100FE140C /* Cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cache.m; path = Backend/Cache/Cache.m; sourceTree = "<group>"; };
+		AA288710163DD82100FE140C /* Cache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Cache.mm; path = Backend/Cache/Cache.mm; sourceTree = "<group>"; };
 		AA288713163DD84700FE140C /* SyncHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncHelper.h; path = Backend/Cache/SyncHelper.h; sourceTree = "<group>"; };
 		AA288714163DD84700FE140C /* SyncHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncHelper.m; path = Backend/Cache/SyncHelper.m; sourceTree = "<group>"; };
 		AA93BA73163A31DD007BC9BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -57,6 +59,9 @@
 		AAB2098F163DB44A003EEC55 /* DataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataViewController.m; path = DataView/DataViewController.m; sourceTree = "<group>"; };
 		AAB89AC5163DE4A5008FE9C4 /* ChoosePinTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChoosePinTypeViewController.h; path = DataView/ChoosePinView/ChoosePinTypeViewController.h; sourceTree = "<group>"; };
 		AAB89AC6163DE4A5008FE9C4 /* ChoosePinTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChoosePinTypeViewController.m; path = DataView/ChoosePinView/ChoosePinTypeViewController.m; sourceTree = "<group>"; };
+		AAC5B7A11646FE2F00BB2362 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
+		AAC5B7A21646FE2F00BB2362 /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
+		AAD8B00F1650700D00CE728F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD8B0101650700D00CE728F /* libsqlite3.dylib in Frameworks */,
 				AA93BA74163A31DD007BC9BC /* MapKit.framework in Frameworks */,
 				7A7E9A8816375A53000AFF66 /* UIKit.framework in Frameworks */,
 				7A7E9A8A16375A53000AFF66 /* Foundation.framework in Frameworks */,
@@ -94,6 +100,7 @@
 		7A7E9A8616375A53000AFF66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAD8B00F1650700D00CE728F /* libsqlite3.dylib */,
 				AA93BA73163A31DD007BC9BC /* MapKit.framework */,
 				7A7E9A8716375A53000AFF66 /* UIKit.framework */,
 				7A7E9A8916375A53000AFF66 /* Foundation.framework */,
@@ -113,6 +120,8 @@
 				7A7E9A9F16375A53000AFF66 /* MainStoryboard.storyboard */,
 				7A7E9AA216375A53000AFF66 /* ViewController.h */,
 				7A7E9AA316375A53000AFF66 /* ViewController.m */,
+				AAC5B7A11646FE2F00BB2362 /* MapView.h */,
+				AAC5B7A21646FE2F00BB2362 /* MapView.m */,
 				7A7E9A8E16375A53000AFF66 /* Supporting Files */,
 			);
 			path = GTWat;
@@ -153,7 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				AA28870F163DD82100FE140C /* Cache.h */,
-				AA288710163DD82100FE140C /* Cache.m */,
+				AA288710163DD82100FE140C /* Cache.mm */,
 				AA288713163DD84700FE140C /* SyncHelper.h */,
 				AA288714163DD84700FE140C /* SyncHelper.m */,
 			);
@@ -253,9 +262,10 @@
 				AAB2098D163DB42F003EEC55 /* DataView.m in Sources */,
 				AAB20990163DB44A003EEC55 /* DataViewController.m in Sources */,
 				AA28870C163DD64500FE140C /* SettingsViewController.m in Sources */,
-				AA288711163DD82100FE140C /* Cache.m in Sources */,
+				AA288711163DD82100FE140C /* Cache.mm in Sources */,
 				AA288715163DD84700FE140C /* SyncHelper.m in Sources */,
 				AAB89AC7163DE4A5008FE9C4 /* ChoosePinTypeViewController.m in Sources */,
+				AAC5B7A31646FE2F00BB2362 /* MapView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

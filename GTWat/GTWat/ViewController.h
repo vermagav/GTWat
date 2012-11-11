@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+  NSTimer* pressTimer;
+  
+  IBOutlet MKMapView* mapView;
+}
 
 @end

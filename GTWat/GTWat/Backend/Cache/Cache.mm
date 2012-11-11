@@ -7,6 +7,7 @@
 //
 
 #import "Cache.h"
+#import "/usr/include/sqlite3.h"
 
 @implementation Cache
 

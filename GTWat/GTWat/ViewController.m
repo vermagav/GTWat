@@ -19,25 +19,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+  
+  UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:mapView action:@selector(longPressOccurred)];
+  longPressRec.minimumPressDuration = 2.0;
+  [mapView addGestureRecognizer:longPressRec];
+  [longPressRec release];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//  
-  //DataViewController* dvc = [[DataViewController alloc] init];
-  //[dvc.view setBackgroundColor:[UIColor whiteColor]];
-//  
-  //UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:dvc];
-//  [self presentViewController:navController animated:YES completion:nil];
-
-  
-  
-  [self performSegueWithIdentifier:@"PinSegue" sender:self];
 }
 
 @end
