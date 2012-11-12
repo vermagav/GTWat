@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+@class DataViewController;
+
 @interface ViewController : UIViewController {
   NSTimer* pressTimer;
   
   IBOutlet MKMapView* mapView;
+  IBOutlet DataViewController* dvc;
 }
 
 -(void) longPressOccurred: (UIGestureRecognizer*) recognizer;

@@ -36,6 +36,7 @@
     pa.title = @"Hello";
     [mapView addAnnotation:pa];
     [pa release];
+    [self performSegueWithIdentifier:@"PinSegue" sender:self];
   }
 }
 
