@@ -18,12 +18,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
   
-  UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:mapView action:@selector(longPressOccurred)];
-  longPressRec.minimumPressDuration = 2.0;
+  UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
   [mapView addGestureRecognizer:longPressRec];
   [longPressRec release];
+}
+
+-(void) longPressOccurred: (UIGestureRecognizer*) recognizer {
+  NSLog(@"Long Press");
+  
+  if(recognizer.state == UIGestureRecognizerStateEnded) {
+    CGPoint touchPoint = [recognizer locationInView:mapView];
+    CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
+    
+    MKPointAnnotation* pa = [[MKPointAnnotation alloc] init];
+    pa.coordinate = touchMapCoordinate;
+    pa.title = @"Hello";
+    [mapView addAnnotation:pa];
+    [pa release];
+  }
 }
 
 - (void)didReceiveMemoryWarning

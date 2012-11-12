@@ -23,8 +23,6 @@
         <!--View Controller-->
         <scene sceneID="5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="HYp-e5-w0u"/>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
@@ -67,11 +65,18 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Updates: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgR-4Y-XtN">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="EgR-4Y-XtN" firstAttribute="centerY" secondItem="mbB-uO-xty" secondAttribute="centerY" type="default" id="5qg-QZ-eVS"/>
                             <constraint firstItem="OHB-xE-4Tm" firstAttribute="centerX" secondItem="mbB-uO-xty" secondAttribute="centerX" type="default" id="6Ru-Wk-3DP"/>
                             <constraint firstItem="mHL-iC-muo" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="ArR-X3-f7T"/>
+                            <constraint firstItem="EgR-4Y-XtN" firstAttribute="centerX" secondItem="mbB-uO-xty" secondAttribute="centerX" type="default" id="IXv-K5-eFg"/>
                             <constraint firstItem="mHL-iC-muo" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="XMx-vo-wxV"/>
                             <constraint firstAttribute="bottom" secondItem="mbB-uO-xty" secondAttribute="bottom" constant="10" id="kvK-Lf-wmb"/>
                             <constraint firstItem="OHB-xE-4Tm" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="o9K-2D-K8B"/>
@@ -86,6 +91,8 @@
                         <segue destination="ewM-gw-81F" kind="push" identifier="PinSegue" id="H60-Fk-tgO"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="HYp-e5-w0u"/>
             </objects>
             <point key="canvasLocation" x="225" y="101"/>
         </scene>

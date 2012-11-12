@@ -15,4 +15,6 @@
   IBOutlet MKMapView* mapView;
 }
 
+-(void) longPressOccurred: (UIGestureRecognizer*) recognizer;
+
 @end
