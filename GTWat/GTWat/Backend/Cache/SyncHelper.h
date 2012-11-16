@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Cache.h"
 
-@interface SyncHelper : NSObject
+@interface SyncHelper : NSObject {
+  NSTimer* syncTimer;
+  NSDate* lastSynced;
+  
+  Cache* cache;
+}
+
+-(void) sync:(NSTimer*) timer;
 
 @end

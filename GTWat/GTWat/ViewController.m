@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "DataViewController.h"
+#import "SyncHelper.h"
+#import "Utilities.h"
 
 @interface ViewController ()
 
@@ -17,7 +19,11 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
+  
+  SyncHelper* helper = [[SyncHelper alloc] init];
+  
+  [Utilities loadUserId];
   
   UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
   [mapView addGestureRecognizer:longPressRec];

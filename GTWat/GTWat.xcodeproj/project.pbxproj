@@ -21,6 +21,8 @@
 		AA28870C163DD64500FE140C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28870B163DD64500FE140C /* SettingsViewController.m */; };
 		AA288711163DD82100FE140C /* Cache.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA288710163DD82100FE140C /* Cache.mm */; };
 		AA288715163DD84700FE140C /* SyncHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA288714163DD84700FE140C /* SyncHelper.m */; };
+		AA2BC7191655FA6C0043AAE6 /* cache.db in Resources */ = {isa = PBXBuildFile; fileRef = AA2BC7181655FA6C0043AAE6 /* cache.db */; };
+		AA2BC71D165603A10043AAE6 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2BC71C165603A10043AAE6 /* Utilities.m */; };
 		AA93BA74163A31DD007BC9BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA93BA73163A31DD007BC9BC /* MapKit.framework */; };
 		AAB2098D163DB42F003EEC55 /* DataView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2098C163DB42F003EEC55 /* DataView.m */; };
 		AAB20990163DB44A003EEC55 /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2098F163DB44A003EEC55 /* DataViewController.m */; };
@@ -52,6 +54,9 @@
 		AA288710163DD82100FE140C /* Cache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Cache.mm; path = Backend/Cache/Cache.mm; sourceTree = "<group>"; };
 		AA288713163DD84700FE140C /* SyncHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncHelper.h; path = Backend/Cache/SyncHelper.h; sourceTree = "<group>"; };
 		AA288714163DD84700FE140C /* SyncHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncHelper.m; path = Backend/Cache/SyncHelper.m; sourceTree = "<group>"; };
+		AA2BC7181655FA6C0043AAE6 /* cache.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = cache.db; path = Backend/Cache/cache.db; sourceTree = "<group>"; };
+		AA2BC71B165603A10043AAE6 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = Backend/Utilities.h; sourceTree = "<group>"; };
+		AA2BC71C165603A10043AAE6 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = Backend/Utilities.m; sourceTree = "<group>"; };
 		AA93BA73163A31DD007BC9BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		AAB2098B163DB42F003EEC55 /* DataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataView.h; path = DataView/DataView.h; sourceTree = "<group>"; };
 		AAB2098C163DB42F003EEC55 /* DataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataView.m; path = DataView/DataView.m; sourceTree = "<group>"; };
@@ -154,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				AA28870E163DD80300FE140C /* Cache */,
+				AA2BC71B165603A10043AAE6 /* Utilities.h */,
+				AA2BC71C165603A10043AAE6 /* Utilities.m */,
 			);
 			name = Backend;
 			sourceTree = "<group>";
@@ -161,6 +168,7 @@
 		AA28870E163DD80300FE140C /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				AA2BC7181655FA6C0043AAE6 /* cache.db */,
 				AA28870F163DD82100FE140C /* Cache.h */,
 				AA288710163DD82100FE140C /* Cache.mm */,
 				AA288713163DD84700FE140C /* SyncHelper.h */,
@@ -246,6 +254,7 @@
 				7A7E9A9C16375A53000AFF66 /* Default@2x.png in Resources */,
 				7A7E9A9E16375A53000AFF66 /* Default-568h@2x.png in Resources */,
 				7A7E9AA116375A53000AFF66 /* MainStoryboard.storyboard in Resources */,
+				AA2BC7191655FA6C0043AAE6 /* cache.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +275,7 @@
 				AA288715163DD84700FE140C /* SyncHelper.m in Sources */,
 				AAB89AC7163DE4A5008FE9C4 /* ChoosePinTypeViewController.m in Sources */,
 				AAC5B7A31646FE2F00BB2362 /* MapView.m in Sources */,
+				AA2BC71D165603A10043AAE6 /* Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

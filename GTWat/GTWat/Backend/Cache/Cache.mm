@@ -11,4 +11,16 @@
 
 @implementation Cache
 
+-(id) initWithDatabase:(NSString*) dbPath {
+  self = [super init];
+  
+  const char* dbpath = [dbPath UTF8String];
+  int rc = sqlite3_open(dbpath, &dbInst);
+  if(rc) {
+    NSLog(@"Error");
+  }
+  
+  return self;
+}
+
 @end

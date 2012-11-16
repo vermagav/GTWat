@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "/usr/include/sqlite3.h"
 
-@interface Cache : NSObject
+@interface Cache : NSObject {
+  sqlite3* dbInst;
+  
+}
+
+-(id) initWithDatabase:(NSString*) dbPath;
 
 @end
