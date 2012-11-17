@@ -18,6 +18,7 @@
 		7A7E9A9E16375A53000AFF66 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A7E9A9D16375A53000AFF66 /* Default-568h@2x.png */; };
 		7A7E9AA116375A53000AFF66 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7E9A9F16375A53000AFF66 /* MainStoryboard.storyboard */; };
 		7A7E9AA416375A53000AFF66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E9AA316375A53000AFF66 /* ViewController.m */; };
+		AA0DA1301658089000E86FD5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0DA12F1658089000E86FD5 /* User.m */; };
 		AA28870C163DD64500FE140C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28870B163DD64500FE140C /* SettingsViewController.m */; };
 		AA288711163DD82100FE140C /* Cache.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA288710163DD82100FE140C /* Cache.mm */; };
 		AA288715163DD84700FE140C /* SyncHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA288714163DD84700FE140C /* SyncHelper.m */; };
@@ -48,6 +49,8 @@
 		7A7E9AA016375A53000AFF66 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		7A7E9AA216375A53000AFF66 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		7A7E9AA316375A53000AFF66 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AA0DA12E1658089000E86FD5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Backend/User.h; sourceTree = "<group>"; };
+		AA0DA12F1658089000E86FD5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Backend/User.m; sourceTree = "<group>"; };
 		AA28870A163DD64500FE140C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = SettingsView/SettingsViewController.h; sourceTree = "<group>"; };
 		AA28870B163DD64500FE140C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = SettingsView/SettingsViewController.m; sourceTree = "<group>"; };
 		AA28870F163DD82100FE140C /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cache.h; path = Backend/Cache/Cache.h; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				AA28870E163DD80300FE140C /* Cache */,
 				AA2BC71B165603A10043AAE6 /* Utilities.h */,
 				AA2BC71C165603A10043AAE6 /* Utilities.m */,
+				AA0DA12E1658089000E86FD5 /* User.h */,
+				AA0DA12F1658089000E86FD5 /* User.m */,
 			);
 			name = Backend;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				AAB89AC7163DE4A5008FE9C4 /* ChoosePinTypeViewController.m in Sources */,
 				AAC5B7A31646FE2F00BB2362 /* MapView.m in Sources */,
 				AA2BC71D165603A10043AAE6 /* Utilities.m in Sources */,
+				AA0DA1301658089000E86FD5 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

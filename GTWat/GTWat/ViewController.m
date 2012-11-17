@@ -22,6 +22,7 @@
   [super viewDidLoad];
   
   SyncHelper* helper = [[SyncHelper alloc] init];
+  [helper sync:nil];
   
   [Utilities loadUserId];
   

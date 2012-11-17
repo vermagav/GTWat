@@ -9,13 +9,30 @@
 #import <Foundation/Foundation.h>
 #import "Cache.h"
 
+@class User;
+
 @interface SyncHelper : NSObject {
   NSTimer* syncTimer;
   NSDate* lastSynced;
+  
+  NSDictionary* cachedUsers;
   
   Cache* cache;
 }
 
 -(void) sync:(NSTimer*) timer;
+
+
+//Users
+//Creating user
+-(BOOL) createUserWithId:(int) uId withCurrentLocation:(NSString*) location;
+
+//Requesting Users
+-(User*) requestUserWithId:(int) uId;
+-(NSDictionary*) requestUsers;
+
+//Updating user location
+-(BOOL) updateCurrentPositionWithLocation:(NSString*) location;
+-(BOOL) updateUserLocationWithId:(int) uId withLocation: (NSString*) location;
 
 @end
