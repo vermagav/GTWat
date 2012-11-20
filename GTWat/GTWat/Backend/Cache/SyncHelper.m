@@ -8,6 +8,8 @@
 
 #import "SyncHelper.h"
 #import "User.h"
+#import "Pin.h"
+#import "Comment.h"
 #import "Utilities.h"
 
 #define SYNCMINS 10
@@ -39,6 +41,204 @@
   
   lastSynced = [NSDate date];
 }
+
+#pragma mark Comments helper methods
+
+-(NSDictionary*) requestComments {
+  //Build storing type
+  NSMutableDictionary* comments = [[NSMutableDictionary alloc] init];
+  
+  //Build request url + types
+  NSURL* url = [NSURL URLWithString:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/comments"];
+  NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:url];
+  [urlRequest setHTTPMethod:@"GET"];
+  
+  NSError* requestError;
+  NSURLResponse* response;
+  
+  //Make request
+  NSData* requestData= [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&requestError];
+  
+  //Parse request
+  NSError* jsonError;
+  NSArray* json = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:& jsonError];
+  
+  for(int i = 0; i < [json count]; i++) {
+    NSDictionary* thingy = [json objectAtIndex:i];
+    Comment* comment = [Comment commentWithJSONEntry:thingy];
+    [comments setObject:comment forKey:[NSNumber numberWithInt:[comment entryId]]];
+  }
+  
+  //Return resulting type
+  return comments;
+}
+
+-(Comment*) requestCommentWithCommentId:(int) commentId {
+  //Build storing type
+
+  //Build request url + types
+  NSString* urlStr = [NSString stringWithFormat:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/comments/%d", commentId];
+  NSLog(@"URL: %@", urlStr);
+  NSURL* url = [NSURL URLWithString:urlStr];
+  NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:url];
+  [urlRequest setHTTPMethod:@"GET"];
+  
+  NSError* requestError;
+  NSURLResponse* response;
+  
+  //Make request
+  NSData* requestData= [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&requestError];
+  
+  //Parse request
+  NSError* jsonError;
+  NSDictionary* json = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:& jsonError];
+  
+  Comment* comment = nil;
+  comment = [Comment commentWithJSONEntry:json];
+  
+  //Return resulting type
+  return comment;
+}
+
+-(BOOL) addComment:(Comment*) comment {
+  int commendId = [comment commentId];
+  int entryId = [comment entryId];
+  int userId = [comment userId];
+  NSString* text = [comment text];
+  NSDate* date = [comment date];
+ 
+  NSDateFormatter* dateReader = [[NSDateFormatter alloc] init];
+  [dateReader setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+  NSString* dateStr = [dateReader stringFromDate:date];
+  
+  //Build Variable string and Data
+  NSString* postStr = [NSString stringWithFormat:@"entryId=%d&userId=%d&commentId=%d&text=%@&time=%@&", entryId, userId, commendId, text, dateStr];
+  
+  NSData* postData = [postStr dataUsingEncoding:NSASCIIStringEncoding];
+  NSString* postDataLen = [NSString stringWithFormat:@"%d", [postData length]];
+  
+  //Build request
+  NSString* urlStr = @"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/comments/";
+  NSURL* url = [NSURL URLWithString:urlStr];
+  
+  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+  [request setHTTPMethod:@"POST"];
+  [request setValue:postDataLen forHTTPHeaderField:@"Content-Length"];
+  [request setHTTPBody:postData];
+  [request setTimeoutInterval:30];
+  
+  //Send request
+  NSError* error;
+  NSURLResponse* response;
+  [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+  if (error) {
+    return NO;
+  }
+  
+  return YES;
+}
+
+#pragma mark Pin helper methods
+-(NSDictionary*) requestPins {
+  //Build storing type
+  NSMutableDictionary* pins = [[NSMutableDictionary alloc] init];
+  
+  //Build request url + types
+  NSURL* url = [NSURL URLWithString:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/pins"];
+  NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:url];
+  [urlRequest setHTTPMethod:@"GET"];
+  
+  NSError* requestError;
+  NSURLResponse* response;
+  
+  //Make request
+  NSData* requestData= [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&requestError];
+  
+  //Parse request
+  NSError* jsonError;
+  NSArray* json = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:& jsonError];
+  
+  for(int i = 0; i < [json count]; i++) {
+    NSDictionary* thingy = [json objectAtIndex:i];
+    Pin* pin = [Pin pinWithJSONEntry:thingy];
+    [pins setObject:pin forKey:[NSNumber numberWithInt:[pin entryId]]];
+  }
+  
+  //Return resulting type
+  return pins;
+
+}
+
+-(Pin*) requestPinWithEntryId:(int) entryId {
+  //Build storing type
+  
+  //Build request url + types
+  NSString* urlStr = [NSString stringWithFormat:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/pins/%d", entryId];
+  NSLog(@"URL: %@", urlStr);
+  NSURL* url = [NSURL URLWithString:urlStr];
+  NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:url];
+  [urlRequest setHTTPMethod:@"GET"];
+  
+  NSError* requestError;
+  NSURLResponse* response;
+  
+  //Make request
+  NSData* requestData= [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&requestError];
+  
+  //Parse request
+  NSError* jsonError;
+  NSDictionary* json = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:& jsonError];
+  
+  Pin* pin = nil;
+  pin = [Pin pinWithJSONEntry:json];
+  
+  //Return resulting type
+  return pin;
+}
+
+-(BOOL) addPin:(Pin*) pin {
+  
+  int entryId = [pin entryId];
+  int userId = [pin userId];
+  NSString* location = [pin location];
+  NSString* specLocation = [pin specificLocation];
+  NSString* subject = [pin subject];
+  NSString* description = [pin description];
+  
+  NSDateFormatter* dateReader = [[NSDateFormatter alloc] init];
+  [dateReader setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+  
+  NSString* dateStr = [dateReader stringFromDate:[pin date]];
+  NSString* addDateStr = [dateReader stringFromDate:[pin addDate]];
+  
+  //Build Variable string and Data
+  NSString* postStr = [NSString stringWithFormat:@"entryId=%d&userId=%d&location=%@&specLocation=%@&description=%@&subject=%@&time=%@&DBAddTime=%@", entryId, userId, location, specLocation, description, subject, dateStr, addDateStr];
+  
+  NSData* postData = [postStr dataUsingEncoding:NSASCIIStringEncoding];
+  NSString* postDataLen = [NSString stringWithFormat:@"%d", [postData length]];
+  
+  //Build request
+  NSString* urlStr = @"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/pins/";
+  NSURL* url = [NSURL URLWithString:urlStr];
+  
+  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+  [request setHTTPMethod:@"POST"];
+  [request setValue:postDataLen forHTTPHeaderField:@"Content-Length"];
+  [request setHTTPBody:postData];
+  [request setTimeoutInterval:30];
+  
+  //Send request
+  NSError* error;
+  NSURLResponse* response;
+  [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+  if (error) {
+    return NO;
+  }
+  
+  return YES;
+}
+
+#pragma mark User helper methods
 
 -(NSDictionary*) requestUsers {
   
@@ -102,15 +302,31 @@
 }
 
 -(BOOL) createUserWithId:(int) uId withCurrentLocation:(NSString*) location {
+  
+  //Build Variable string and Data
+  NSString* postStr = [NSString stringWithFormat:@"userId=%d&lastKnownLocation=%@", uId, location];
+  NSData* postData = [postStr dataUsingEncoding:NSASCIIStringEncoding];
+  NSString* postDataLen = [NSString stringWithFormat:@"%d", [postData length]];
+  
+  //Build request
   NSString* urlStr = @"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/users/";
-  NSString* uIdStr = [NSString stringWithFormat:@"?userId=%d", uId];
-  urlStr = [urlStr stringByAppendingString:uIdStr];
   NSURL* url = [NSURL URLWithString:urlStr];
   
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
   [request setHTTPMethod:@"POST"];
+  [request setValue:postDataLen forHTTPHeaderField:@"Content-Length"];
+  [request setHTTPBody:postData];
+  [request setTimeoutInterval:30];
   
-  return false;
+  //Send request
+  NSError* error;
+  NSURLResponse* response;
+  [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+  if (error) {
+    return NO;
+  }
+  
+  return YES;
 }
 
 -(BOOL) updateCurrentPositionWithLocation:(NSString*) location {
@@ -120,15 +336,36 @@
 
 -(BOOL) updateUserLocationWithId:(int) uId withLocation: (NSString*) location {
   
-  NSString* urlStr = @"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/users/";
-  NSString* uIdStr = [NSString stringWithFormat:@"?userId=%d", uId];
-  urlStr = [urlStr stringByAppendingString:uIdStr];
+  //Build Variable string and Data
+  NSString* postStr = [NSString stringWithFormat:@"lastKnownLocation=%@", location];
+  NSData* postData = [postStr dataUsingEncoding:NSASCIIStringEncoding];
+  NSString* postDataLen = [NSString stringWithFormat:@"%d", [postData length]];
+  
+  NSLog(@"Log data: %@", postStr );
+  
+  //Build request
+//NSString* urlStr = [NSString stringWithFormat:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/users/%d", uId] ;
+  NSString* urlStr = [NSString stringWithFormat:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/users/%d?lastKnownLocation=\"%@\"", uId,location] ;
   NSURL* url = [NSURL URLWithString:urlStr];
+  NSLog(@"Url: %@", urlStr);
   
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
   [request setHTTPMethod:@"PUT"];
+  [request setValue:postDataLen forHTTPHeaderField:@"Content-Length"];
+  //[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+  //[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+  [request setHTTPBody:postData];
+  [request setTimeoutInterval:30];
   
-  return NO;
+  //Send request
+  NSError* error;
+  NSURLResponse* response;
+  [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+  if (error) {
+    return NO;
+  } 
+  
+  return YES;
 }
 
 @end

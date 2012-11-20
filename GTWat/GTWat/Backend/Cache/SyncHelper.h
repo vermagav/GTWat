@@ -10,6 +10,8 @@
 #import "Cache.h"
 
 @class User;
+@class Pin;
+@class Comment;
 
 @interface SyncHelper : NSObject {
   NSTimer* syncTimer;
@@ -22,6 +24,14 @@
 
 -(void) sync:(NSTimer*) timer;
 
+-(NSDictionary*) requestComments;
+-(Comment*) requestCommentWithCommentId:(int) commentId;
+-(BOOL) addComment:(Comment*) comment;
+
+//Pins
+-(NSDictionary*) requestPins;
+-(Pin*) requestPinWithEntryId:(int) entryId;
+-(BOOL) addPin:(Pin*) pin;
 
 //Users
 //Creating user

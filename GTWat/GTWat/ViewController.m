@@ -10,6 +10,8 @@
 #import "DataViewController.h"
 #import "SyncHelper.h"
 #import "Utilities.h"
+#import "Pin.h"
+#import "Comment.h"
 
 @interface ViewController ()
 
@@ -21,11 +23,10 @@
 {
   [super viewDidLoad];
   
+  int uId = [Utilities loadUserId];
+  
   SyncHelper* helper = [[SyncHelper alloc] init];
-  [helper sync:nil];
-  
-  [Utilities loadUserId];
-  
+
   UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
   [mapView addGestureRecognizer:longPressRec];
   [longPressRec release];

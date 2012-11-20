@@ -25,6 +25,8 @@
 		AA2BC7191655FA6C0043AAE6 /* cache.db in Resources */ = {isa = PBXBuildFile; fileRef = AA2BC7181655FA6C0043AAE6 /* cache.db */; };
 		AA2BC71D165603A10043AAE6 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2BC71C165603A10043AAE6 /* Utilities.m */; };
 		AA93BA74163A31DD007BC9BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA93BA73163A31DD007BC9BC /* MapKit.framework */; };
+		AA958E07165ACB0E00FE3940 /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = AA958E06165ACB0E00FE3940 /* Pin.m */; };
+		AA958E0B165AFED200FE3940 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = AA958E0A165AFED100FE3940 /* Comment.m */; };
 		AAB2098D163DB42F003EEC55 /* DataView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2098C163DB42F003EEC55 /* DataView.m */; };
 		AAB20990163DB44A003EEC55 /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2098F163DB44A003EEC55 /* DataViewController.m */; };
 		AAB89AC7163DE4A5008FE9C4 /* ChoosePinTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB89AC6163DE4A5008FE9C4 /* ChoosePinTypeViewController.m */; };
@@ -61,6 +63,10 @@
 		AA2BC71B165603A10043AAE6 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = Backend/Utilities.h; sourceTree = "<group>"; };
 		AA2BC71C165603A10043AAE6 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = Backend/Utilities.m; sourceTree = "<group>"; };
 		AA93BA73163A31DD007BC9BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		AA958E05165ACB0E00FE3940 /* Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pin.h; path = Backend/Pin.h; sourceTree = "<group>"; };
+		AA958E06165ACB0E00FE3940 /* Pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pin.m; path = Backend/Pin.m; sourceTree = "<group>"; };
+		AA958E09165AFED100FE3940 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = Backend/Comment.h; sourceTree = "<group>"; };
+		AA958E0A165AFED100FE3940 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = Backend/Comment.m; sourceTree = "<group>"; };
 		AAB2098B163DB42F003EEC55 /* DataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataView.h; path = DataView/DataView.h; sourceTree = "<group>"; };
 		AAB2098C163DB42F003EEC55 /* DataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataView.m; path = DataView/DataView.m; sourceTree = "<group>"; };
 		AAB2098E163DB44A003EEC55 /* DataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataViewController.h; path = DataView/DataViewController.h; sourceTree = "<group>"; };
@@ -166,6 +172,10 @@
 				AA2BC71C165603A10043AAE6 /* Utilities.m */,
 				AA0DA12E1658089000E86FD5 /* User.h */,
 				AA0DA12F1658089000E86FD5 /* User.m */,
+				AA958E05165ACB0E00FE3940 /* Pin.h */,
+				AA958E06165ACB0E00FE3940 /* Pin.m */,
+				AA958E09165AFED100FE3940 /* Comment.h */,
+				AA958E0A165AFED100FE3940 /* Comment.m */,
 			);
 			name = Backend;
 			sourceTree = "<group>";
@@ -282,6 +292,8 @@
 				AAC5B7A31646FE2F00BB2362 /* MapView.m in Sources */,
 				AA2BC71D165603A10043AAE6 /* Utilities.m in Sources */,
 				AA0DA1301658089000E86FD5 /* User.m in Sources */,
+				AA958E07165ACB0E00FE3940 /* Pin.m in Sources */,
+				AA958E0B165AFED200FE3940 /* Comment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
