@@ -18,5 +18,6 @@
 +(id) userWithJSONEntry:(NSDictionary*) jsonElement;
 
 @property int userId;
+@property (nonatomic, retain) NSString* lastKnownLocation;
 
 @end

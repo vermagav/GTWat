@@ -10,7 +10,7 @@
 
 @implementation User
 
-@synthesize userId = _userId;
+@synthesize userId = _userId, lastKnownLocation = _lastKnownLocation;
 
 -(id) initWithUserId: (int) uId withLastLoc:(NSString*) loc {
   self = [super init];
@@ -24,7 +24,7 @@
 
 +(id) userWithJSONEntry:(NSDictionary*) jsonElement {
   
-  int uId = (int)[jsonElement objectForKey:@"userId"];
+  int uId = [[jsonElement objectForKey:@"userId"] intValue];
   NSString* lastLoc = [jsonElement objectForKey:@"lastKnownLoc"];
   
   User* newUser = [[User alloc] initWithUserId:uId withLastLoc:lastLoc];

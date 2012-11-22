@@ -23,7 +23,7 @@
   
   cache = [[Cache alloc] initWithDatabase:dbPath];
   
-  syncTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(sync:) userInfo:nil repeats:YES];
+  syncTimer = [NSTimer scheduledTimerWithTimeInterval:SYNCMINS*60 target:self selector:@selector(sync:) userInfo:nil repeats:YES];
   
   return self;
 }
@@ -37,7 +37,7 @@
 -(void) syncCache {
   NSLog(@"I am in the background. :O");
   
-  cachedUsers = [self requestUsers];
+  //cachedUsers = [self requestUsers];
   
   lastSynced = [NSDate date];
 }
@@ -66,7 +66,7 @@
   for(int i = 0; i < [json count]; i++) {
     NSDictionary* thingy = [json objectAtIndex:i];
     Comment* comment = [Comment commentWithJSONEntry:thingy];
-    [comments setObject:comment forKey:[NSNumber numberWithInt:[comment entryId]]];
+    [comments setObject:comment forKey:[NSNumber numberWithInt:[comment commentId]]];
   }
   
   //Return resulting type
@@ -74,11 +74,10 @@
 }
 
 -(Comment*) requestCommentWithCommentId:(int) commentId {
-  //Build storing type
 
   //Build request url + types
   NSString* urlStr = [NSString stringWithFormat:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/comments/%d", commentId];
-  NSLog(@"URL: %@", urlStr);
+
   NSURL* url = [NSURL URLWithString:urlStr];
   NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:url];
   [urlRequest setHTTPMethod:@"GET"];
@@ -174,7 +173,7 @@
   
   //Build request url + types
   NSString* urlStr = [NSString stringWithFormat:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/pins/%d", entryId];
-  NSLog(@"URL: %@", urlStr);
+
   NSURL* url = [NSURL URLWithString:urlStr];
   NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:url];
   [urlRequest setHTTPMethod:@"GET"];
@@ -274,7 +273,7 @@
 -(User*) requestUserWithId:(int) uId {
   
   //Build request url + types
-  NSString* uIdStr = [NSString stringWithFormat:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/users/?userId=%d", uId];
+  NSString* uIdStr = [NSString stringWithFormat:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/users/%d", uId];
   NSURL* url = [NSURL URLWithString:uIdStr];
   NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:url];
   [urlRequest setHTTPMethod:@"GET"];
@@ -287,14 +286,17 @@
   
   //Parse request
   NSError* jsonError;
-  NSArray* json = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:& jsonError];
-
+  NSDictionary* json = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:& jsonError];
   
   User* user = nil;
-  
-  if([json count] == 1) {
-    NSDictionary* userElem = [json objectAtIndex:0];
-    [User userWithJSONEntry:userElem];
+  NSDictionary* userElem = nil;
+  if([json count] == 2) {
+    userElem = json;
+    user = [User userWithJSONEntry:userElem];
+  }
+  else {
+    userElem = [((NSArray*)json) objectAtIndex:0];
+    user = [User userWithJSONEntry:userElem];
   }
   
   //Return resulting type
@@ -341,19 +343,15 @@
   NSData* postData = [postStr dataUsingEncoding:NSASCIIStringEncoding];
   NSString* postDataLen = [NSString stringWithFormat:@"%d", [postData length]];
   
-  NSLog(@"Log data: %@", postStr );
-  
   //Build request
-//NSString* urlStr = [NSString stringWithFormat:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/users/%d", uId] ;
-  NSString* urlStr = [NSString stringWithFormat:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/users/%d?lastKnownLocation=\"%@\"", uId,location] ;
+  NSString* urlStr = [NSString stringWithFormat:@"http://m.cip.gatech.edu/developer/notfound/api/GTWAT/users/%d", uId] ;
+
   NSURL* url = [NSURL URLWithString:urlStr];
-  NSLog(@"Url: %@", urlStr);
   
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-  [request setHTTPMethod:@"PUT"];
+  [request setHTTPMethod:@"POST"];
+  [request setValue:@"PUT" forHTTPHeaderField:@"X-HTTP-Method-Override"];
   [request setValue:postDataLen forHTTPHeaderField:@"Content-Length"];
-  //[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-  //[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
   [request setHTTPBody:postData];
   [request setTimeoutInterval:30];
   

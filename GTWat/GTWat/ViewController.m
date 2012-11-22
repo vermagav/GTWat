@@ -12,6 +12,7 @@
 #import "Utilities.h"
 #import "Pin.h"
 #import "Comment.h"
+#import "User.h"
 
 @interface ViewController ()
 
