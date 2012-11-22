@@ -24,9 +24,8 @@
 {
   [super viewDidLoad];
   
-  int uId = [Utilities loadUserId];
-  
-  SyncHelper* helper = [[SyncHelper alloc] init];
+  userId = [Utilities loadUserId];
+  dataSource = [[SyncHelper alloc] init];
 
   UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
   [mapView addGestureRecognizer:longPressRec];

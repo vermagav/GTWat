@@ -18,11 +18,15 @@
   NSDate* lastSynced;
   
   NSDictionary* cachedUsers;
+  NSDictionary* cachedComments;
+  NSDictionary* cachedPins;
   
+  BOOL _isWritingToCache;
   Cache* cache;
 }
 
 -(void) sync:(NSTimer*) timer;
+-(BOOL) isWritingToCache;
 
 -(NSDictionary*) requestComments;
 -(Comment*) requestCommentWithCommentId:(int) commentId;

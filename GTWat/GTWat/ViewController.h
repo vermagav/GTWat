@@ -10,9 +10,14 @@
 #import <MapKit/MapKit.h>
 
 @class DataViewController;
+@class SyncHelper;
 
 @interface ViewController : UIViewController {
   NSTimer* pressTimer;
+  
+  SyncHelper* dataSource;
+  
+  int userId;
   
   IBOutlet MKMapView* mapView;
   IBOutlet DataViewController* dvc;

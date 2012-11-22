@@ -36,10 +36,18 @@
 
 -(void) syncCache {
   NSLog(@"I am in the background. :O");
+  _isWritingToCache = YES;
   
-  //cachedUsers = [self requestUsers];
+  cachedUsers = [self requestUsers];
+  cachedComments = [self requestComments];
+  cachedPins = [self requestPins];
   
+  _isWritingToCache = NO;
   lastSynced = [NSDate date];
+}
+
+-(BOOL) isWritingToCache {
+  return _isWritingToCache;
 }
 
 #pragma mark Comments helper methods
