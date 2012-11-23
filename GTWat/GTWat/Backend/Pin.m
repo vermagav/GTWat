@@ -7,13 +7,16 @@
 //
 
 #import "Pin.h"
+#import "Comment.h"
 
 @implementation Pin
 
 @synthesize entryId = _entryId, userId = _userId;
+@synthesize pinType = _pinType;
 @synthesize subject = _subject, description = _description;
 @synthesize location = _location, specificLocation = _specLocation;
 @synthesize date = _date, addDate = _addDate;
+@synthesize comments = _comments;
 
 -(id) initWithEntryId:(int) entryId withUserId:(int) userId withSubject:(NSString*) subject withDescription:(NSString*) description withLocation:(NSString*) location withSpecLocation:(NSString*) specLocation withDate:(NSDate*) date withAddDate:(NSDate*) addDate {
   self = [super init];
@@ -28,6 +31,10 @@
   _addDate = addDate;
   
   return self;
+}
+
+-(void) addComment:(Comment*) comment {
+  [_comments addObject:comment];
 }
 
 +(id) pinWithJSONEntry:(NSDictionary*) jsonElement {

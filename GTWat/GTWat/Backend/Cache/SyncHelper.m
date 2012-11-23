@@ -23,6 +23,8 @@
   
   cache = [[Cache alloc] initWithDatabase:dbPath];
   
+  [self syncCache];
+  
   syncTimer = [NSTimer scheduledTimerWithTimeInterval:SYNCMINS*60 target:self selector:@selector(sync:) userInfo:nil repeats:YES];
   
   return self;
@@ -35,12 +37,19 @@
 }
 
 -(void) syncCache {
-  NSLog(@"I am in the background. :O");
   _isWritingToCache = YES;
   
   cachedUsers = [self requestUsers];
   cachedComments = [self requestComments];
   cachedPins = [self requestPins];
+  
+  [cache clearUsersFromDB];
+  [cache clearCommentsFromDB];
+  [cache clearPinsFromDB];
+  
+  [cache writeUsersToDB:cachedUsers];
+  [cache writeCommentsToDB:cachedComments];
+  [cache writePinssToDB:cachedPins];
   
   _isWritingToCache = NO;
   lastSynced = [NSDate date];
