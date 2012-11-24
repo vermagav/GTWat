@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<api>
+	<description>
+		<![CDATA[This is an API to interact with GTWAT db]]>
+	</description>
+
+	<command id='comments' security='public'>
+		<description><![CDATA[This simple API lets you add and remove comments]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all comments]]></description>
+			<action file='comments.php'><![CDATA[listComments();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific comment]]></description>
+			<action file='comments.php'><![CDATA[getComment($_REST['comments']);]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create a comment]]></description>
+			<action file='comments.php'><![CDATA[addComment($_POST['commentId'],$_POST['entryId'],$_POST['text'],$_POST['time'],$_POST['userId']);]]></action>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update a comment]]></description>
+			<action file='comments.php'><![CDATA[updateComment($_REST['comments'],$_POST['entryId'],$_POST['text'],$_POST['time'],$_POST['userId']);]]></action>
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete a comment]]></description>
+			<action file='comments.php'><![CDATA[deleteComment($_REST['comments']);]]></action>
+		</delete>
+	</command>
+	
+	<command id='users' security='public'>
+		<description><![CDATA[This simple API lets you add and remove users]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all users]]></description>
+			<action file='users.php'><![CDATA[listUsers();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific user]]></description>
+			<action file='users.php'><![CDATA[getUser($_REST['users']);]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create a user]]></description>
+			<action file='users.php'><![CDATA[addUser($_POST['userId'],$_POST['lastKnownLocation']);]]></action>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update a user]]></description>
+			<action file='users.php'><![CDATA[updateUser($_REST['users'],$_POST['lastKnownLocation']);]]></action>
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete a user]]></description>
+			<action file='users.php'><![CDATA[deleteUser($_REST['users']);]]></action>
+		</delete>
+	</command>
+	
+	<command id='pins' security='public'>
+		<description><![CDATA[This simple API lets you add and remove pins]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all pins]]></description>
+			<action file='pins.php'><![CDATA[listPins();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific pin]]></description>
+			<action file='pins.php'><![CDATA[getPin($_REST['pins']);]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create a pin]]></description>
+			<action file='pins.php'><![CDATA[addPin($_POST['entryId'],$_POST['userId'],$_POST['location'],$_POST['subject'],$_POST['specLocation'],$_POST['time'],$_POST['description'],$_POST['DBAddTime']);]]></action>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update a pin]]></description>
+			<action file='pins.php'><![CDATA[updatePin($_REST['entryId'],$_POST['userId'],$_POST['location'],$_POST['subject'],$_POST['specLocation'],$_POST['time'],$_POST['description'],$_POST['DBAddTime']);]]></action>
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete a pin]]></description>
+			<action file='pins.php'><![CDATA[deletePin($_REST['pins']);]]></action>
+		</delete>
+	</command>
+</api>
