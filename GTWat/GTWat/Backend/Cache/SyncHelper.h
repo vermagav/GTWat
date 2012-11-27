@@ -25,6 +25,8 @@
   Cache* cache;
 }
 
++(SyncHelper*) getSyncHelper;
+
 -(void) sync:(NSTimer*) timer;
 -(BOOL) isWritingToCache;
 
@@ -50,3 +52,5 @@
 -(BOOL) updateUserLocationWithId:(int) uId withLocation: (NSString*) location;
 
 @end
+
+static SyncHelper* syncInst;

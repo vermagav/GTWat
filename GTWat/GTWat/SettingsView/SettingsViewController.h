@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController {
+  IBOutlet UILabel* idLabel;
+  
+  IBOutlet UISwitch* questionSwitch;
+  IBOutlet UISwitch* alertSwitch;
+  IBOutlet UISwitch* eventSwitch;
+}
 
 -(IBAction)done:(id)sender;
+
+-(IBAction)forceSync:(id)sender;
+-(IBAction)restoreApp:(id)sender;
 
 @end

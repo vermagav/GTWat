@@ -16,6 +16,13 @@
 
 @implementation SyncHelper
 
++(SyncHelper*) getSyncHelper {
+  if(!syncInst) {
+    syncInst = [[SyncHelper alloc] init];
+  }
+  return syncInst;
+}
+
 - (id) init {
   self = [super init];
   

@@ -7,6 +7,8 @@
 //
 
 #import "SettingsViewController.h"
+#import "Utilities.h"
+#import "SyncHelper.h"
 
 @interface SettingsViewController ()
 
@@ -25,14 +27,34 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
+  int uid = [Utilities getUserId];
+  NSString* idStr = [NSString stringWithFormat:@"%d", uid];
+  [idLabel setText:idStr];
+  
 	// Do any additional setup after loading the view.
 }
 
 -(IBAction)done:(id)sender {
-  
   [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(IBAction)forceSync:(id)sender {
+  SyncHelper* data = [SyncHelper getSyncHelper];
+  [data sync:nil];
+}
+
+-(IBAction)restoreApp:(id)sender {
+  int uid = [Utilities forceNewId];
+  NSString* idStr = [NSString stringWithFormat:@"%d", uid];
+  [idLabel setText:idStr];
   
+  [questionSwitch setOn:YES];
+  [alertSwitch setOn:YES];
+  [eventSwitch setOn:YES];
+  
+  SyncHelper* data = [SyncHelper getSyncHelper];
+  [data sync:nil];
 }
 
 - (void)didReceiveMemoryWarning

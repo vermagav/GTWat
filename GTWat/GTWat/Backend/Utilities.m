@@ -38,4 +38,20 @@ static int userId;
   return userId;
 }
 
++ (int) forceNewId {
+  NSString* docsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+  NSString* idFile = [docsPath stringByAppendingPathComponent:@"id.txt"];
+  
+  NSError* error;
+  
+  int newUserId = abs(rand());
+  NSString* idStr = [NSString stringWithFormat:@"%d", newUserId];
+  BOOL writeSucc = [idStr writeToFile:idFile atomically:YES encoding:NSUTF8StringEncoding error:&error];
+  if(writeSucc) {
+    userId = newUserId;
+  }
+
+  return userId;
+}
+
 @end

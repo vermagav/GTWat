@@ -13,5 +13,6 @@
 
 + (int) getUserId;
 + (int) loadUserId;
++ (int) forceNewId;
 
 @end
