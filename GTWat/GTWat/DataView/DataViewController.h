@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DataViewController : UIViewController {
+@interface DataViewController : UIViewController <UIAlertViewDelegate> {
   IBOutlet UINavigationBar* navBar;
 }
 

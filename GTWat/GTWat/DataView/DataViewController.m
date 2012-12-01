@@ -32,9 +32,28 @@
 
 
 -(IBAction)done:(id)sender {
-  
-  [self.navigationController popToRootViewControllerAnimated:YES];
-  
+    UIAlertView *shareAlert = [[UIAlertView alloc] initWithTitle:@"Share Your Post"
+                                                      message:@"Would you like to share this post on your Social Network?"
+                                                     delegate:self
+                                            cancelButtonTitle:@"No Thanks."
+                                            otherButtonTitles:@"Yes, Please!", nil];
+    [shareAlert show];
+    [shareAlert release];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"Yes, Please!"]){
+        NSString *textToShare = @"test!"; //Change what we share here.
+        NSArray *activityItems = @[textToShare];
+        UIActivityViewController *activityVC =
+        [[UIActivityViewController alloc] initWithActivityItems:activityItems
+                                          applicationActivities:nil];
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning
