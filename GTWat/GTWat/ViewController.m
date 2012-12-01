@@ -38,14 +38,17 @@
   if(recognizer.state == UIGestureRecognizerStateEnded) {
     CGPoint touchPoint = [recognizer locationInView:mapView];
     CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
-    
-    MKPointAnnotation* pa = [[MKPointAnnotation alloc] init];
+    pa = [[MKPointAnnotation alloc] init];
     pa.coordinate = touchMapCoordinate;
     pa.title = @"Hello";
     [mapView addAnnotation:pa];
-    [pa release];
     [self performSegueWithIdentifier:@"PinSegue" sender:self];
   }
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  DataViewController* upcomingDataView = [segue destinationViewController];
+  [upcomingDataView getStared:pa with:mapView];
 }
 
 - (void)didReceiveMemoryWarning

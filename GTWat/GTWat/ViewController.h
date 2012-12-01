@@ -21,6 +21,8 @@
   
   IBOutlet MKMapView* mapView;
   IBOutlet DataViewController* dvc;
+  
+  MKPointAnnotation* pa;
 }
 
 -(void) longPressOccurred: (UIGestureRecognizer*) recognizer;

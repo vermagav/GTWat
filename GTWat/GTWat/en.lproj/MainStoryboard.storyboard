@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Gkv-35-vlk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Gkv-35-vlk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -113,10 +113,21 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="slideFrameDown2" destination="ewM-gw-81F" eventType="editingDidEnd" id="FIP-1J-qXA"/>
+                                            <action selector="slideFrameUp2" destination="ewM-gw-81F" eventType="editingDidBegin" id="uYo-U5-cLa"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s0i-M3-B5w">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="154" id="iHZ-y9-mgM"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <action selector="slideFrameDown2" destination="ewM-gw-81F" eventType="editingDidEnd" id="BiW-7X-mGh"/>
+                                            <action selector="slideFrameUp2" destination="ewM-gw-81F" eventType="editingDidBegin" id="610-j2-whh"/>
+                                        </connections>
                                     </textField>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pqQ-TE-RsS">
                                         <constraints>
@@ -137,37 +148,20 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description goes here!" translatesAutoresizingMaskIntoConstraints="NO" id="TIP-Z0-fbC">
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="106" id="48r-TF-Cb8"/>
+                                            <constraint firstAttribute="height" constant="137" id="y13-Ou-i5U"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="ewM-gw-81F" id="IeU-PZ-KlF"/>
+                                        </connections>
                                     </textView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wu-Z7-GWQ">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcd-IA-f07">
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Post on Facebook">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azK-ku-eJR">
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Tweet">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3T8-n1-zTy">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <state key="normal" title="Pin Type">
@@ -184,6 +178,10 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S0H-9w-yqD">
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <action selector="slideFrameDown1" destination="ewM-gw-81F" eventType="editingDidEnd" id="GUt-FQ-1ko"/>
+                                            <action selector="slideFrameUp1" destination="ewM-gw-81F" eventType="editingDidBegin" id="RtC-MP-HCH"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Subject" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA1-ZR-e5m">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -193,21 +191,17 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Xcd-IA-f07" firstAttribute="baseline" secondItem="azK-ku-eJR" secondAttribute="baseline" type="default" id="0Ar-Lr-YtM"/>
-                                    <constraint firstItem="azK-ku-eJR" firstAttribute="top" secondItem="TIP-Z0-fbC" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="23l-wu-jht"/>
                                     <constraint firstItem="S0H-9w-yqD" firstAttribute="trailing" secondItem="WOQ-Sz-tAS" secondAttribute="trailing" type="default" id="8Q3-O3-7ev"/>
-                                    <constraint firstItem="TIP-Z0-fbC" firstAttribute="trailing" secondItem="azK-ku-eJR" secondAttribute="trailing" type="default" id="AVt-kr-UdC"/>
                                     <constraint firstItem="WOQ-Sz-tAS" firstAttribute="trailing" secondItem="TIP-Z0-fbC" secondAttribute="trailing" type="default" id="EXA-Jk-GCo"/>
                                     <constraint firstItem="s0i-M3-B5w" firstAttribute="leading" secondItem="5wu-Z7-GWQ" secondAttribute="leading" type="default" id="GZR-7J-btd"/>
                                     <constraint firstItem="WOQ-Sz-tAS" firstAttribute="leading" secondItem="s0i-M3-B5w" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Gj4-kH-CrO"/>
+                                    <constraint firstAttribute="bottom" secondItem="TIP-Z0-fbC" secondAttribute="bottom" constant="36" id="IWt-kw-41k"/>
                                     <constraint firstItem="5wu-Z7-GWQ" firstAttribute="top" secondItem="s0i-M3-B5w" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Ihi-Sy-sdn"/>
                                     <constraint firstItem="TIP-Z0-fbC" firstAttribute="leading" secondItem="5wu-Z7-GWQ" secondAttribute="leading" type="default" id="Nqt-Mj-LuH"/>
                                     <constraint firstItem="S0H-9w-yqD" firstAttribute="top" secondItem="uhB-h2-EaA" secondAttribute="top" constant="215" id="P3N-UC-0tW"/>
                                     <constraint firstItem="pqQ-TE-RsS" firstAttribute="top" secondItem="uhB-h2-EaA" secondAttribute="top" type="default" id="Q8N-bT-Q0A"/>
                                     <constraint firstItem="7jZ-ML-o60" firstAttribute="top" secondItem="uhB-h2-EaA" secondAttribute="top" constant="245" id="TyE-ON-ibZ"/>
-                                    <constraint firstItem="azK-ku-eJR" firstAttribute="leading" secondItem="Xcd-IA-f07" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Vkm-e6-441"/>
                                     <constraint firstItem="WOQ-Sz-tAS" firstAttribute="baseline" secondItem="s0i-M3-B5w" secondAttribute="baseline" type="default" id="YRl-cI-mPs"/>
-                                    <constraint firstItem="TIP-Z0-fbC" firstAttribute="leading" secondItem="Xcd-IA-f07" secondAttribute="leading" type="default" id="Ymq-wh-dYq"/>
                                     <constraint firstItem="3T8-n1-zTy" firstAttribute="trailing" secondItem="S0H-9w-yqD" secondAttribute="trailing" type="default" id="YoY-eU-Ojs"/>
                                     <constraint firstItem="S0H-9w-yqD" firstAttribute="leading" secondItem="WA1-ZR-e5m" secondAttribute="leading" type="default" id="aLc-xQ-Wl3"/>
                                     <constraint firstItem="S0H-9w-yqD" firstAttribute="leading" secondItem="7jZ-ML-o60" secondAttribute="leading" type="default" id="cmU-8U-6bo"/>
@@ -216,12 +210,9 @@
                                     <constraint firstItem="WFg-E9-Bvv" firstAttribute="leading" secondItem="WOQ-Sz-tAS" secondAttribute="leading" type="default" id="fz0-sr-Da0"/>
                                     <constraint firstItem="3T8-n1-zTy" firstAttribute="centerX" secondItem="pqQ-TE-RsS" secondAttribute="centerX" type="default" id="h39-q4-cfN"/>
                                     <constraint firstItem="WA1-ZR-e5m" firstAttribute="leading" secondItem="3T8-n1-zTy" secondAttribute="leading" type="default" id="hhP-Uy-nSe"/>
-                                    <constraint firstAttribute="bottom" secondItem="Xcd-IA-f07" secondAttribute="bottom" constant="16" id="iLK-ks-by2"/>
                                     <constraint firstAttribute="trailing" secondItem="pqQ-TE-RsS" secondAttribute="trailing" constant="1" id="r4x-HE-JG5"/>
                                     <constraint firstItem="s0i-M3-B5w" firstAttribute="top" secondItem="uhB-h2-EaA" secondAttribute="top" constant="268" id="rSS-dT-FZx"/>
                                     <constraint firstItem="7jZ-ML-o60" firstAttribute="leading" secondItem="s0i-M3-B5w" secondAttribute="leading" type="default" id="uEB-ki-Riu"/>
-                                    <constraint firstItem="azK-ku-eJR" firstAttribute="leading" secondItem="WOQ-Sz-tAS" secondAttribute="leading" type="default" id="ul7-XQ-CWN"/>
-                                    <constraint firstItem="Xcd-IA-f07" firstAttribute="top" secondItem="TIP-Z0-fbC" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="v1D-NL-EEU"/>
                                     <constraint firstItem="3T8-n1-zTy" firstAttribute="top" secondItem="uhB-h2-EaA" secondAttribute="top" constant="141" id="wcW-Jw-93b"/>
                                     <constraint firstItem="TIP-Z0-fbC" firstAttribute="top" secondItem="uhB-h2-EaA" secondAttribute="top" constant="331" id="yon-YU-1RY"/>
                                     <constraint firstItem="pqQ-TE-RsS" firstAttribute="leading" secondItem="uhB-h2-EaA" secondAttribute="leading" type="default" id="znW-No-Qjk"/>
@@ -230,7 +221,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GzN-Un-kPP">
                                 <items>
                                     <navigationItem title="Title" id="csR-ZN-y2q">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="J8E-da-h72">
+                                        <barButtonItem key="leftBarButtonItem" title="Post" id="J8E-da-h72">
                                             <connections>
                                                 <action selector="done:" destination="ewM-gw-81F" id="NuP-tM-3w7"/>
                                             </connections>
@@ -253,6 +244,8 @@
                     <navigationItem key="navigationItem" id="9eJ-l6-UPm"/>
                     <connections>
                         <outlet property="navBar" destination="GzN-Un-kPP" id="3Hq-RZ-gTF"/>
+                        <outlet property="scrollView" destination="uhB-h2-EaA" id="4hy-Cl-dvl"/>
+                        <outlet property="subject" destination="S0H-9w-yqD" id="gHU-qx-KHa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mvp-3a-cXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -458,6 +451,8 @@
             <relationships>
                 <relationship kind="action" name="done:"/>
                 <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="subject" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="MapView" superclassName="MKMapView">
