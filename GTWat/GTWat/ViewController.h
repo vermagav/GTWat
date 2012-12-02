@@ -32,6 +32,8 @@
   CLLocation* currLocation;
   
   NSMutableArray* displayPins;
+  
+  CLLocation* touchLoc;
 }
 
 @property BOOL showAlerts;
