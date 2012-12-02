@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Gkv-35-vlk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Gkv-35-vlk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -159,7 +159,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="uBH-Sj-vhL" kind="push" id="F5r-iW-cNZ"/>
+                                            <action selector="changePinType:" destination="ewM-gw-81F" eventType="touchUpInside" id="DxR-IQ-tpb"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S0H-9w-yqD">
@@ -266,6 +266,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9eJ-l6-UPm"/>
                     <connections>
+                        <outlet property="changePinTypeButton" destination="3T8-n1-zTy" id="tBa-Up-iJN"/>
                         <outlet property="description" destination="TIP-Z0-fbC" id="Dek-cz-L0l"/>
                         <outlet property="location" destination="s0i-M3-B5w" id="aIS-ta-0Kc"/>
                         <outlet property="map" destination="pqQ-TE-RsS" id="esF-wl-cuY"/>
@@ -278,82 +279,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mvp-3a-cXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="717" y="101"/>
-        </scene>
-        <!--Choose Pin Type View Controller-->
-        <scene sceneID="0kb-ua-pli">
-            <objects>
-                <viewController id="uBH-Sj-vhL" customClass="ChoosePinTypeViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="17U-0Z-QSQ">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kmw-99-17S">
-                                <items>
-                                    <navigationItem title="Choose Pin Type" id="tWl-pi-Tmw">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="done" id="UXP-3I-F57">
-                                            <connections>
-                                                <action selector="done:" destination="uBH-Sj-vhL" id="VPI-oL-vSn"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" indicatorStyle="black" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="deb-Tb-RTe">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="PinTypeCell" id="sm3-xb-y86">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="IaA-r7-BFQ">
-                                        <rect key="frame" x="0.0" y="66" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="iTi-iy-zzH">
-                                        <rect key="frame" x="0.0" y="110" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="uBH-Sj-vhL" id="45D-8a-743"/>
-                                    <outlet property="delegate" destination="uBH-Sj-vhL" id="YKi-Hd-aHw"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="deb-Tb-RTe" firstAttribute="bottom" secondItem="17U-0Z-QSQ" secondAttribute="bottom" type="default" id="71Q-Jv-FvU"/>
-                            <constraint firstItem="deb-Tb-RTe" firstAttribute="top" secondItem="kmw-99-17S" secondAttribute="bottom" type="default" id="Akm-P3-YuU"/>
-                            <constraint firstItem="deb-Tb-RTe" firstAttribute="trailing" secondItem="17U-0Z-QSQ" secondAttribute="trailing" type="default" id="ZYE-r3-s12"/>
-                            <constraint firstItem="deb-Tb-RTe" firstAttribute="leading" secondItem="17U-0Z-QSQ" secondAttribute="leading" type="default" id="bJj-0t-Cam"/>
-                            <constraint firstItem="kmw-99-17S" firstAttribute="leading" secondItem="17U-0Z-QSQ" secondAttribute="leading" type="default" id="bmY-V3-ggY"/>
-                            <constraint firstItem="kmw-99-17S" firstAttribute="trailing" secondItem="17U-0Z-QSQ" secondAttribute="trailing" type="default" id="vwf-dq-fvw"/>
-                            <constraint firstItem="kmw-99-17S" firstAttribute="top" secondItem="17U-0Z-QSQ" secondAttribute="top" type="default" id="whp-Id-Wqi"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="jeS-jE-k75"/>
-                    <connections>
-                        <outlet property="table" destination="deb-Tb-RTe" id="fns-aI-7Cf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="H80-uS-5fC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1140" y="100"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="DvW-zI-A8k">
@@ -483,15 +408,6 @@
         </scene>
     </scenes>
     <classes>
-        <class className="ChoosePinTypeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChoosePinTypeViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="description" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="pinPicker" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="table" candidateClass="UITableView"/>
-            </relationships>
-        </class>
         <class className="DataView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DataView.h"/>
         </class>
@@ -499,7 +415,9 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DataViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="changePinType:"/>
                 <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="changePinTypeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="description" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="location" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="map" candidateClass="MKMapView"/>
@@ -521,6 +439,9 @@
                 <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="forceSync:"/>
                 <relationship kind="action" name="restoreApp:"/>
+                <relationship kind="action" name="switchAlerts:"/>
+                <relationship kind="action" name="switchEvents:"/>
+                <relationship kind="action" name="switchQuestions:"/>
                 <relationship kind="outlet" name="alertSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="eventSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="idLabel" candidateClass="UILabel"/>

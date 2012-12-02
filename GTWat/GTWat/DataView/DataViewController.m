@@ -34,6 +34,7 @@
   UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
   // For selecting cell.
   gestureRecognizer.cancelsTouchesInView = NO;
+  pinTypes = [[NSArray alloc] initWithObjects:@"Question", @"Alert", @"Event", nil];
   [self.view addGestureRecognizer:gestureRecognizer];
   [gestureRecognizer release];
 
@@ -43,7 +44,16 @@
   [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
--(IBAction)done:(id)sender {
+- (IBAction)changePinType:(id)sender {
+  UIPickerView *picker = [[UIPickerView alloc]
+                          initWithFrame:CGRectMake(0, 244, 320, 270)];
+  picker.delegate = self;
+  picker.dataSource = self;
+  [self.view addSubview:picker];
+  [picker release];
+}
+
+- (IBAction)done:(id)sender {
   UIAlertView *shareAlert = [[UIAlertView alloc] initWithTitle:@"Share Your Post"
                                                       message:@"Would you like to share this post on your Social Network?"
                                                      delegate:self
@@ -122,16 +132,33 @@
   [self.view endEditing:YES];
 }
 
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  UIViewController* destination = [segue destinationViewController];
-  
-  if([destination isKindOfClass: [ChoosePinTypeViewController class]]) {
-    ChoosePinTypeViewController* pinView = [segue destinationViewController];
-    [pinView setDataController:self];
-  }
-  else {
-    
-  }
+// Pikcer
+#pragma mark PickerView DataSource
+
+-(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+  return 1;
 }
 
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+  return [pinTypes count];
+}
+
+-(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+  NSLog(@"Row: %d", row );
+  return [pinTypes objectAtIndex: row];
+}
+
+#pragma mark PickerView Delegate
+
+-(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+  
+  NSString* descStr = [NSString stringWithFormat:@"Add description of pin type here for: %@", [pinTypes objectAtIndex:row]];
+  
+  [description setText:descStr];
+}
+
+- (void)dealloc {
+  [_selectedPinType release];
+  [super dealloc];
+}
 @end
