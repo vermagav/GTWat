@@ -106,7 +106,7 @@
   int uId = [Utilities getUserId];
   
   NSDate* currDate = [NSDate date];
-  Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:uId withSubject:subjectStr withDescription:desc withLocation:@"nil" withSpecLocation:locationStr withDate:currDate withAddDate:currDate withpinType: _selectedPinType];
+  Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:uId withSubject:subjectStr withDescription:desc withLocation:@"nil" withSpecLocation:locationStr withDate:currDate withAddDate:currDate withPinType: _selectedPinType];
   
   
   [mainView addNewPin:newPin];

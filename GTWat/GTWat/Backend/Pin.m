@@ -34,6 +34,12 @@
   return self;
 }
 
+-(id) initWithEntryId:(int) entryId withUserId:(int) userId withSubject:(NSString*) subject withDescription:(NSString*) description withLocation:(NSString*) location withSpecLocation:(NSString*) specLocation withDate:(NSDate*) date withAddDate:(NSDate*) addDate withPinType:(int)pinType {
+  self = [self initWithEntryId:entryId withUserId:userId withSubject:subject withDescription:description withLocation:location withSpecLocation:specLocation withDate:date withAddDate:addDate];
+  
+  return self;
+}
+
 -(id) withAnnotationView: (MKPointAnnotation*) annotationView initWithEntryId:(int) entryId withUserId:(int) userId withSubject:(NSString*) subject withDescription:(NSString*) description withLocation:(NSString*) location withSpecLocation:(NSString*) specLocation withDate:(NSDate*) date withAddDate:(NSDate*) addDate {
   self = [self initWithEntryId:entryId withUserId:userId withSubject:subject withDescription:description withLocation:location withSpecLocation:specLocation withDate:date withAddDate:addDate];
   _annotationView = annotationView;
