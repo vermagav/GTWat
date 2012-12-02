@@ -70,8 +70,8 @@
     region.center = self->mapView.userLocation.coordinate;
     
     MKCoordinateSpan span;
-    span.latitudeDelta  = 0.5; // Change these values to change the zoom
-    span.longitudeDelta = 0.5;
+    span.latitudeDelta  = 0.05; // Change these values to change the zoom
+    span.longitudeDelta = 0.05;
     region.span = span;
     
     [self->mapView setRegion:region animated:YES];
