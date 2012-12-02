@@ -45,8 +45,8 @@
   [gestureRecognizer release];
 
   MKCoordinateRegion region;
-  region.center = _currLocation.coordinate; // = self->mapView.userLocation.coordinate;
-  
+  region.center = pin.coordinate; // = self->mapView.userLocation.coordinate;
+  [map addAnnotation:pin];
   // Set zoom level
   MKCoordinateSpan span;
   span.latitudeDelta  = 0.005;
