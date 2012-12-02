@@ -7,12 +7,15 @@
 //
 
 #import "ChoosePinTypeViewController.h"
+#import "DataViewController.h"
 
 @interface ChoosePinTypeViewController ()
 
 @end
 
 @implementation ChoosePinTypeViewController
+
+@synthesize dataController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,36 +42,49 @@
 -(IBAction)done:(id)sender {
   [self.navigationController popViewControllerAnimated:YES];
 }
+#pragma mark - Table view data source
 
-#pragma mark PickerView DataSource
-
--(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  // Return the number of sections.
   return 1;
 }
 
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  // Return the number of rows in the section.
   return [pinTypes count];
 }
 
--(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-  NSLog(@"Row: %d", row );
-  return [pinTypes objectAtIndex: row];
-}
-
-#pragma mark PickerView Delegate
-
--(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  int index = [indexPath row];
   
-  NSString* descStr = [NSString stringWithFormat:@"Add description of pin type here for: %@", [pinTypes objectAtIndex:row]];
+  NSString* pinType = [pinTypes objectAtIndex:index];
   
-  [description setText:descStr];
+  static NSString *CellIdentifier = @"PinTypeCell";
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+  
+  cell.textLabel.text = pinType;
+  cell.textLabel.textAlignment = kCTTextAlignmentRight;
+  
+  return cell;
 }
 
--(UIView*) pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-  NSLog(@"Row picked here: %d", row);
-  UILabel* txtView = [[UILabel alloc] init];
-  [txtView setText:[pinTypes objectAtIndex:row]];
-  return txtView;
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return NO;
 }
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  [dataController setSelectedPinType:[indexPath row]];
+  
+  UINavigationController* nav = [self navigationController];
+  [nav popToViewController: dataController animated:YES];
+}
+
 
 @end

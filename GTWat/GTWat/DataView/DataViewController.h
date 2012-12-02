@@ -9,16 +9,32 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+typedef enum PinType {
+  Question,
+  Alert,
+  Event
+} PinType;
+
 @interface DataViewController : UIViewController <UIAlertViewDelegate, UITextViewDelegate> {
   IBOutlet UINavigationBar* navBar;
+  
   IBOutlet UITextField* subject;
+  IBOutlet UITextField* location;
+  IBOutlet UITextField* time;
+  IBOutlet UITextView* description;
+
   IBOutlet UIScrollView* scrollView;
   MKPointAnnotation* pin;
-  MKMapView* map;
+  IBOutlet MKMapView* map;
+  
+  UIPopoverController* popover;
 }
+
+@property PinType selectedPinType;
 
 -(void) getStared:(MKPointAnnotation*) pa with: (MKMapView *) mapView;
 
 -(IBAction)done:(id)sender;
+-(IBAction)cancel:(id)sender;
 
 @end
