@@ -20,7 +20,12 @@
   if(cacheInst == nil) {
     NSString* dbPath = [[NSBundle mainBundle] pathForResource:@"cache" ofType:@"db"];
     NSLog(@"Db Path: %@", dbPath);
-    cacheInst = [[Cache alloc] initWithDatabase:dbPath];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:@"cache.db"];
+    
+    cacheInst = [[Cache alloc] initWithDatabase:path];
   }
   
   return cacheInst;
@@ -28,11 +33,14 @@
 
 -(id) initWithDatabase:(NSString*) dbPath {
   self = [super init];
+  [self createEditableCopyOfDatabaseIfNeeded];
   
   //Interesting.... Prob not the same cache.db
   //that is in the project file and git. :O
   const char* dbpath = [dbPath UTF8String];
   NSLog(@"DB Path: %s", dbpath);
+  
+  
   
   int rc = sqlite3_open_v2(dbpath, &dbInst, SQLITE_OPEN_READWRITE, NULL);
 //  int rc = sqlite3_open(dbpath, &dbInst);
@@ -41,6 +49,26 @@
   }
   
   return self;
+}
+
+-(void) createEditableCopyOfDatabaseIfNeeded {
+  NSFileManager* fileManager = [NSFileManager defaultManager];
+  NSError* fError;
+  NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+  NSString* documentDirectory = [paths objectAtIndex:0];
+  NSString* writablePath = [documentDirectory stringByAppendingPathComponent:@"cache.db"];
+  
+  BOOL success = [fileManager fileExistsAtPath:writablePath];
+  
+  if(success) {
+    return;
+  }
+  
+  NSString* defaultPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"cache.db"];
+  success = [fileManager copyItemAtPath:defaultPath toPath:writablePath error:&fError];
+  if(!success) {
+    NSAssert1(0, @"Failed to create writable database with message %@", [fError localizedDescription]);
+  }
 }
 
 #pragma mark User Database Code

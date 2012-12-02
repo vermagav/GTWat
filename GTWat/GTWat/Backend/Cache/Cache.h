@@ -19,6 +19,7 @@
 }
 
 -(id) initWithDatabase:(NSString*) dbPath;
+-(void) createEditableCopyOfDatabaseIfNeeded;
 
 -(BOOL) writeUsersToDB:(NSDictionary*) users;
 -(BOOL) writeUserToDB:(User*) user;

@@ -93,6 +93,8 @@
   [actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
   
   [actionSheet setBounds:CGRectMake(0, 0, 320, 485)];
+  [changePinTypeButton setTitle:@"Pin Type: Questions" forState:(UIControlStateNormal)];
+  _selectedPinType = 0;
 }
 
 - (IBAction)done:(id)sender {
@@ -104,7 +106,7 @@
   int uId = [Utilities getUserId];
   
   NSDate* currDate = [NSDate date];
-  Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:uId withSubject:subjectStr withDescription:desc withLocation:@"nil" withSpecLocation:locationStr withDate:currDate withAddDate:currDate];
+  Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:uId withSubject:subjectStr withDescription:desc withLocation:@"nil" withSpecLocation:locationStr withDate:currDate withAddDate:currDate withpinType: _selectedPinType];
   
   
   [mainView addNewPin:newPin];
@@ -208,6 +210,7 @@
   
   NSLog(@"Selected Type: %@. Index of selected type: %i", [pinTypes objectAtIndex:row], row);
   [changePinTypeButton setTitle:[NSString stringWithFormat:@"Pin Type: %@", [pinTypes objectAtIndex:row]] forState:UIControlStateNormal];
+  _selectedPinType = row;
 }
 
 -(void)dismissActionSheet{
