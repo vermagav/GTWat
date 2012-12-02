@@ -55,9 +55,9 @@
   
   // Set default region to Georgia Tech campus
   // Hard coded for now, replace with user location if app is used elsewhere
-  CLLocation *gtech = [[CLLocation alloc] initWithLatitude:33.778463 longitude:-84.398881];
+  currLocation = [[CLLocation alloc] initWithLatitude:33.778463 longitude:-84.398881];
   MKCoordinateRegion region;
-  region.center = gtech.coordinate; // = self->mapView.userLocation.coordinate;
+  region.center = currLocation.coordinate; // = self->mapView.userLocation.coordinate;
   
   // Set zoom level
   MKCoordinateSpan span;
@@ -96,6 +96,7 @@
   if([destination isKindOfClass: [DataViewController class]]) {
     DataViewController* upcomingDataView = [segue destinationViewController];
     [upcomingDataView getStared:newPin with:mapView];
+    [upcomingDataView setCurrLocation:currLocation];
   }
   else {
     SettingsViewController* settingsController = (SettingsViewController*) [segue destinationViewController];

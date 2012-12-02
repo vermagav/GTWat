@@ -16,6 +16,7 @@
 @implementation DataViewController
 
 @synthesize selectedPinType = _selectedPinType;
+@synthesize currLocation = _currLocation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +39,18 @@
   [self.view addGestureRecognizer:gestureRecognizer];
   [gestureRecognizer release];
 
+  MKCoordinateRegion region;
+  region.center = _currLocation.coordinate; // = self->mapView.userLocation.coordinate;
+  
+  // Set zoom level
+  MKCoordinateSpan span;
+  span.latitudeDelta  = 0.005;
+  span.longitudeDelta = 0.005;
+  region.span = span;
+  
+  // Change default map view to above
+  [map setRegion:region animated:YES];
+  
 }
 
 -(IBAction)cancel:(id)sender {
@@ -158,7 +171,6 @@
 }
 
 - (void)dealloc {
-  [_selectedPinType release];
   [super dealloc];
 }
 @end

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+#import <CoreLocation/CoreLocation.h>
+
 typedef enum PinType {
   Question,
   Alert,
@@ -30,12 +32,14 @@ typedef enum PinType {
   
   NSArray* pinTypes;
   
-  UIPopoverController* popover;
-  
   PinType _selectedPinType;
+  
+  CLLocation* _currLocation;
 }
 
 @property PinType selectedPinType;
+
+@property(nonatomic, retain) CLLocation* currLocation;
 
 -(void) getStared:(MKPointAnnotation*) pa with: (MKMapView *) mapView;
 
