@@ -34,7 +34,7 @@
 
   UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
   [mapView addGestureRecognizer:longPressRec];
-  [longPressRec release];
+  [longPressRec release];	
 
   // Initialize map view observer for zooming to user location
   [self->mapView.userLocation addObserver:self
@@ -140,23 +140,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-// Listen to change in the userLocation
-/*
+// Listen for a change in userLocation
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    // Set default region
-    CLLocation *gtech = [[CLLocation alloc] initWithLatitude:33.778463 longitude:-84.398881];
-    MKCoordinateRegion region;
-    region.center = gtech.coordinate; // = self->mapView.userLocation.coordinate;
-    
-    // Set zoom level
-    MKCoordinateSpan span;
-    span.latitudeDelta  = 0.05;
-    span.longitudeDelta = 0.05;
-    region.span = span;
-    
-    [self->mapView setRegion:region animated:YES];
-}*/
+ // Unused atm
+}
 
 // Cleanup for user location code
 - (void)dealloc
