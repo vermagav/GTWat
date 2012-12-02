@@ -15,6 +15,8 @@
 #import "User.h"
 #import "SettingsViewController.h"
 
+#import <CoreLocation/CLLocation.h>
+
 @interface ViewController ()
 
 @end
