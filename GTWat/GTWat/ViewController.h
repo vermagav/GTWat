@@ -13,7 +13,7 @@
 @class SyncHelper;
 @class Pin;
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate> {
+@interface ViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate> {
   NSTimer* pressTimer;
   
   SyncHelper* dataSource;
@@ -43,5 +43,6 @@
 -(void) longPressOccurred: (UIGestureRecognizer*) recognizer;
 -(void) addNewPin:(Pin*) pin;
 -(void) loadPins;
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation;
 
 @end

@@ -34,6 +34,7 @@
 
   UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
   [mapView addGestureRecognizer:longPressRec];
+  [mapView setDelegate:self];
   [longPressRec release];	
 
   // Initialize map view observer for zooming to user location
@@ -99,7 +100,9 @@
     MKPointAnnotation* pa = [[MKPointAnnotation alloc] init];
     pa.coordinate = pinLocation.coordinate;
     pa.title = [pin subject];
+    
     [mapView addAnnotation:pa];
+    
   }
   
 }
@@ -141,6 +144,31 @@
   circleView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.4];
   return [circleView autorelease];
 }*/
+
+- (MKAnnotationView *)mapView:(MKMapView *)sender viewForAnnotation:(id < MKAnnotation >)annotation
+{
+  static NSString *reuseId = @"StandardPin";
+  
+  MKPinAnnotationView *aView = (MKPinAnnotationView *)[sender
+                                                       dequeueReusableAnnotationViewWithIdentifier:reuseId];
+  if (aView == nil)
+  {
+    aView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                                             reuseIdentifier:reuseId] autorelease];
+    aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    aView.canShowCallout = YES;
+  }
+  
+  aView.annotation = annotation;
+  
+  return aView;   
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view
+calloutAccessoryControlTapped:(UIControl *)control
+{
+  NSLog(@"accessory button tapped for annotation %@", view.annotation);
+}
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   
