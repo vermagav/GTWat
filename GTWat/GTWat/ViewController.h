@@ -12,7 +12,7 @@
 @class DataViewController;
 @class SyncHelper;
 
-@interface ViewController : UIViewController {
+@interface ViewController : UIViewController <CLLocationManagerDelegate> {
   NSTimer* pressTimer;
   
   SyncHelper* dataSource;
@@ -27,6 +27,8 @@
   BOOL _showAlerts;
   BOOL _showQuestions;
   BOOL _showEvents;
+  
+  CLLocation* currLocation;
 }
 
 @property BOOL showAlerts;

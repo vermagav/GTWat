@@ -34,7 +34,7 @@
 
   UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
   [mapView addGestureRecognizer:longPressRec];
-  [longPressRec release];
+  [longPressRec release];	
 
   // Initialize map view observer for zooming to user location
   [self->mapView.userLocation addObserver:self
@@ -55,9 +55,9 @@
   
   // Set default region to Georgia Tech campus
   // Hard coded for now, replace with user location if app is used elsewhere
-  CLLocation *gtech = [[CLLocation alloc] initWithLatitude:33.778463 longitude:-84.398881];
+  currLocation = [[CLLocation alloc] initWithLatitude:33.778463 longitude:-84.398881];
   MKCoordinateRegion region;
-  region.center = gtech.coordinate; // = self->mapView.userLocation.coordinate;
+  region.center = currLocation.coordinate; // = self->mapView.userLocation.coordinate;
   
   // Set zoom level
   MKCoordinateSpan span;
@@ -67,6 +67,11 @@
   
   // Change default map view to above
   [self->mapView setRegion:region animated:YES];
+  
+  // Show user location (blue dot)
+  self->mapView.showsUserLocation = YES;
+  
+  
 }
 
 -(void) addNewPin:(Pin*) pin {
@@ -96,6 +101,7 @@
   if([destination isKindOfClass: [DataViewController class]]) {
     DataViewController* upcomingDataView = [segue destinationViewController];
     [upcomingDataView getStared:newPin with:mapView];
+    [upcomingDataView setCurrLocation:currLocation];
   }
   else {
     SettingsViewController* settingsController = (SettingsViewController*) [segue destinationViewController];
@@ -139,23 +145,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-// Listen to change in the userLocation
-/*
+// Listen for a change in userLocation
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    // Set default region
-    CLLocation *gtech = [[CLLocation alloc] initWithLatitude:33.778463 longitude:-84.398881];
-    MKCoordinateRegion region;
-    region.center = gtech.coordinate; // = self->mapView.userLocation.coordinate;
-    
-    // Set zoom level
-    MKCoordinateSpan span;
-    span.latitudeDelta  = 0.05;
-    span.longitudeDelta = 0.05;
-    region.span = span;
-    
-    [self->mapView setRegion:region animated:YES];
-}*/
+ // Unused atm
+}
 
 // Cleanup for user location code
 - (void)dealloc
