@@ -69,17 +69,23 @@
   [self->mapView setRegion:region animated:YES];
 }
 
+-(void) addNewPin:(Pin*) pin {
+  [pin setAnnotationView:newPin];
+  [mapView addAnnotation:newPin];
+  newPin = nil;
+}
+
 -(void) longPressOccurred: (UIGestureRecognizer*) recognizer {
   NSLog(@"Long Press");
   
   if(recognizer.state == UIGestureRecognizerStateEnded) {
     CGPoint touchPoint = [recognizer locationInView:mapView];
     CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
-    pa = [[MKPointAnnotation alloc] init];
+    newPin = [[MKPointAnnotation alloc] init];
     
-    pa.coordinate = touchMapCoordinate;
-    pa.title = @"Hello";
-    [mapView addAnnotation:pa];
+    newPin.coordinate = touchMapCoordinate;
+    newPin.title = @"Hello";
+    //[mapView addAnnotation:pa];
     [self performSegueWithIdentifier:@"PinSegue" sender:self];
   }
 }
@@ -89,7 +95,7 @@
   UIViewController* destination = [segue destinationViewController];
   if([destination isKindOfClass: [DataViewController class]]) {
     DataViewController* upcomingDataView = [segue destinationViewController];
-    [upcomingDataView getStared:pa with:mapView];
+    [upcomingDataView getStared:newPin with:mapView];
   }
   else {
     SettingsViewController* settingsController = (SettingsViewController*) [segue destinationViewController];

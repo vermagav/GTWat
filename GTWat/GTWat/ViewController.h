@@ -22,8 +22,7 @@
   IBOutlet MKMapView* mapView;
   IBOutlet DataViewController* dvc;
   
-  MKPointAnnotation* pa;
-
+  MKPointAnnotation* newPin;
   
   BOOL _showAlerts;
   BOOL _showQuestions;

@@ -26,13 +26,27 @@
 - (id) init {
   self = [super init];
   
-  NSString* dbPath = [[NSBundle mainBundle] pathForResource:@"cache" ofType:@"db"];
+  //NSString* dbPath = [[NSBundle mainBundle] pathForResource:@"cache" ofType:@"db"];
   
-  cache = [[Cache alloc] initWithDatabase:dbPath];
+  //cache = [[Cache alloc] initWithDatabase:dbPath];
+  
+  cache = [Cache getCacheInst];
   
   [self syncCache];
   
   syncTimer = [NSTimer scheduledTimerWithTimeInterval:SYNCMINS*60 target:self selector:@selector(sync:) userInfo:nil repeats:YES];
+  
+  NSDate* currDate = [NSDate date];
+  Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:1337 withSubject:@"Llamas" withDescription:@"Description" withLocation:@"<1.0,1.0>" withSpecLocation:@"CULC" withDate:currDate withAddDate:currDate];
+  
+  [cacheInst writePinToDB:newPin];
+  BOOL succ = [self addPin:newPin];
+  if(succ) {
+    NSLog(@"Sent pin");
+  }
+  else {
+    NSLog(@"Error sending pin");
+  }
   
   return self;
 }
@@ -46,9 +60,9 @@
 -(void) syncCache {
   _isWritingToCache = YES;
   
-  cachedUsers = [self requestUsers];
-  cachedComments = [self requestComments];
-  cachedPins = [self requestPins];
+  NSDictionary* cachedUsers = [self requestUsers];
+  NSDictionary* cachedComments = [self requestComments];
+  NSDictionary* cachedPins = [self requestPins];
   
   [cache clearUsersFromDB];
   [cache clearCommentsFromDB];
@@ -254,7 +268,8 @@
   NSError* error;
   NSURLResponse* response;
   [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-  if (error) {
+  if (error != nil) {
+    NSLog(@"ERROR");
     return NO;
   }
   
