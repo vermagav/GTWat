@@ -41,6 +41,38 @@
                                 forKeyPath:@"location"
                                    options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                    context:nil];
+    
+  // Create object to manage location service
+  CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    
+  // Set the delegate for the location manager
+  locationManager.delegate = self;
+
+  // Set your desired accuracy
+  locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+
+  [locationManager startUpdatingLocation];
+  
+  // Set default region to Georgia Tech campus
+  // Hard coded for now, replace with user location if app is used elsewhere
+  CLLocation *gtech = [[CLLocation alloc] initWithLatitude:33.778463 longitude:-84.398881];
+  MKCoordinateRegion region;
+  region.center = gtech.coordinate; // = self->mapView.userLocation.coordinate;
+  
+  // Set zoom level
+  MKCoordinateSpan span;
+  span.latitudeDelta  = 0.015;
+  span.longitudeDelta = 0.015;
+  region.span = span;
+  
+  // Change default map view to above
+  [self->mapView setRegion:region animated:YES];
+}
+
+-(void) addNewPin:(Pin*) pin {
+  [pin setAnnotationView:newPin];
+  [mapView addAnnotation:newPin];
+  newPin = nil;
 }
 
 -(void) longPressOccurred: (UIGestureRecognizer*) recognizer {
@@ -49,11 +81,11 @@
   if(recognizer.state == UIGestureRecognizerStateEnded) {
     CGPoint touchPoint = [recognizer locationInView:mapView];
     CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
-    pa = [[MKPointAnnotation alloc] init];
+    newPin = [[MKPointAnnotation alloc] init];
     
-    pa.coordinate = touchMapCoordinate;
-    pa.title = @"Hello";
-    [mapView addAnnotation:pa];
+    newPin.coordinate = touchMapCoordinate;
+    newPin.title = @"Hello";
+    //[mapView addAnnotation:pa];
     [self performSegueWithIdentifier:@"PinSegue" sender:self];
   }
 }
@@ -63,7 +95,7 @@
   UIViewController* destination = [segue destinationViewController];
   if([destination isKindOfClass: [DataViewController class]]) {
     DataViewController* upcomingDataView = [segue destinationViewController];
-    [upcomingDataView getStared:pa with:mapView];
+    [upcomingDataView getStared:newPin with:mapView];
   }
   else {
     SettingsViewController* settingsController = (SettingsViewController*) [segue destinationViewController];
@@ -108,18 +140,22 @@
 }
 
 // Listen to change in the userLocation
+/*
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    // Set default region
+    CLLocation *gtech = [[CLLocation alloc] initWithLatitude:33.778463 longitude:-84.398881];
     MKCoordinateRegion region;
-    region.center = self->mapView.userLocation.coordinate;
+    region.center = gtech.coordinate; // = self->mapView.userLocation.coordinate;
     
+    // Set zoom level
     MKCoordinateSpan span;
-    span.latitudeDelta  = 0.5; // Change these values to change the zoom
-    span.longitudeDelta = 0.5;
+    span.latitudeDelta  = 0.05;
+    span.longitudeDelta = 0.05;
     region.span = span;
     
     [self->mapView setRegion:region animated:YES];
-}
+}*/
 
 // Cleanup for user location code
 - (void)dealloc

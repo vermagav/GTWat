@@ -15,6 +15,17 @@
 
 @implementation Cache
 
++(Cache*) getCacheInst {
+  
+  if(cacheInst == nil) {
+    NSString* dbPath = [[NSBundle mainBundle] pathForResource:@"cache" ofType:@"db"];
+    NSLog(@"Db Path: %@", dbPath);
+    cacheInst = [[Cache alloc] initWithDatabase:dbPath];
+  }
+  
+  return cacheInst;
+}
+
 -(id) initWithDatabase:(NSString*) dbPath {
   self = [super init];
   

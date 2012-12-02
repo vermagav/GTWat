@@ -17,9 +17,9 @@
   NSTimer* syncTimer;
   NSDate* lastSynced;
   
-  NSDictionary* cachedUsers;
-  NSDictionary* cachedComments;
-  NSDictionary* cachedPins;
+//  NSDictionary* cachedUsers;
+//  NSDictionary* cachedComments;
+//  NSDictionary* cachedPins;
   
   BOOL _isWritingToCache;
   Cache* cache;
@@ -28,6 +28,7 @@
 +(SyncHelper*) getSyncHelper;
 
 -(void) sync:(NSTimer*) timer;
+-(void) syncCache;
 -(BOOL) isWritingToCache;
 
 -(NSDictionary*) requestComments;

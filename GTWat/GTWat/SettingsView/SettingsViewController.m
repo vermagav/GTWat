@@ -53,7 +53,7 @@
 
 -(IBAction)forceSync:(id)sender {
   SyncHelper* data = [SyncHelper getSyncHelper];
-  [data sync:nil];
+  [data syncCache];
 }
 
 -(IBAction)restoreApp:(id)sender {

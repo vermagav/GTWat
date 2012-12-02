@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MKPointAnnotation.h>
 
 @class Comment;
 
@@ -24,11 +25,15 @@
   int _pinType;
   
   NSMutableArray* _comments;
+  
+  MKPointAnnotation* _annotationView;
 }
 
 @property int userId;
 @property int entryId;
 @property int pinType;
+
+@property (nonatomic, retain) MKPointAnnotation* annotationView;
 
 @property (nonatomic, retain) NSString* location;
 @property (nonatomic, retain) NSString* subject;
@@ -41,6 +46,8 @@
 @property (nonatomic, retain) NSMutableArray* comments;
 
 -(id) initWithEntryId:(int) entryId withUserId:(int) userId withSubject:(NSString*) subject withDescription:(NSString*) description withLocation:(NSString*) location withSpecLocation:(NSString*) specLocation withDate:(NSDate*) date withAddDate:(NSDate*) addDate;
+
+-(id) withAnnotationView: (MKPointAnnotation*) annotationView initWithEntryId:(int) entryId withUserId:(int) userId withSubject:(NSString*) subject withDescription:(NSString*) description withLocation:(NSString*) location withSpecLocation:(NSString*) specLocation withDate:(NSDate*) date withAddDate:(NSDate*) addDate;
 
 -(void) addComment:(Comment*) comment;
 
