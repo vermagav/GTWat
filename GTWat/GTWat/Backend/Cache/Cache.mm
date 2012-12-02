@@ -34,7 +34,8 @@
   const char* dbpath = [dbPath UTF8String];
   NSLog(@"DB Path: %s", dbpath);
   
-  int rc = sqlite3_open(dbpath, &dbInst);
+  int rc = sqlite3_open_v2(dbpath, &dbInst, SQLITE_OPEN_READWRITE, NULL);
+//  int rc = sqlite3_open(dbpath, &dbInst);
   if(rc) {
     NSLog(@"Error");
   }
