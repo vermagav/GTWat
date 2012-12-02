@@ -72,6 +72,9 @@
   self->mapView.showsUserLocation = YES;
   
   [self loadPins];
+  
+  //MKCircle *circle = [MKCircle circleWithCenterCoordinate:userLocation.coordinate radius:1000];
+  //[map addOverlay:circle];
 }
 
 -(void) loadPins {
@@ -115,6 +118,10 @@
   if(recognizer.state == UIGestureRecognizerStateEnded) {
     CGPoint touchPoint = [recognizer locationInView:mapView];
     CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
+    
+    //MKCircle *circle = [MKCircle circleWithCenterCoordinate:touchMapCoordinate radius:1];
+    //[mapView addOverlay:circle];
+    
     newPin = [[MKPointAnnotation alloc] init];
     
     newPin.coordinate = touchMapCoordinate;
@@ -124,6 +131,14 @@
     [self performSegueWithIdentifier:@"PinSegue" sender:self];
   }
 }
+
+/*- (MKOverlayView *)mapView:(MKMapView *)map viewForOverlay:(id <MKOverlay>)overlay
+{
+  MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:overlay];
+  circleView.strokeColor = [UIColor redColor];
+  circleView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.4];
+  return [circleView autorelease];
+}*/
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   
