@@ -72,6 +72,7 @@
   self->mapView.showsUserLocation = YES;
   
   [self loadPins];
+  [self getCommentsForPin:1494771517];
 
 }
 
@@ -102,6 +103,35 @@
     [mapView addAnnotation:pa];
   }
   
+}
+
+/*
+  Get matching comments
+ */
+-(NSMutableArray*) getCommentsForPin:(int) entryIdParam {
+
+  // Create NSMutableArray to populate and return later
+  NSMutableArray* matchingComments = [[NSMutableArray alloc] init];
+
+  // Load comments from cache
+  NSMutableDictionary* commentsDict;
+  Cache* cache = [Cache getCacheInst];
+  [cache readCommentsFromDB:&commentsDict];
+  NSArray* keys = [commentsDict allKeys];
+  
+  // Iterate through all comments
+  for(int i = 0; i < [keys count]; i++) {
+    NSNumber* key = [keys objectAtIndex:i];
+    Comment* comment = [commentsDict objectForKey:key];
+    
+    // Find matching comment(s) and add object to our array
+    if(comment.entryId == entryIdParam) {
+      [matchingComments addObject:comment];
+    }
+  }
+  
+  // Return matching comments
+  return matchingComments;
 }
 
 -(void) addNewPin:(Pin*) pin {
@@ -204,3 +234,4 @@
 }
 
 @end
+
