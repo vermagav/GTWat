@@ -61,8 +61,8 @@
   
   // Set zoom level
   MKCoordinateSpan span;
-  span.latitudeDelta  = 0.014;
-  span.longitudeDelta = 0.014;
+  span.latitudeDelta  = 0.015;
+  span.longitudeDelta = 0.015;
   region.span = span;
   
   // Change default map view to above
