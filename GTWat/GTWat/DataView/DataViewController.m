@@ -8,6 +8,9 @@
 
 #import "DataViewController.h"
 #import "ChoosePinTypeViewController.h"
+#import "ViewController.h"
+#import "Utilities.h"
+#import "Pin.h"
 
 @interface DataViewController ()
 
@@ -17,6 +20,7 @@
 
 @synthesize selectedPinType = _selectedPinType;
 @synthesize currLocation = _currLocation;
+@synthesize mainView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -92,6 +96,19 @@
 }
 
 - (IBAction)done:(id)sender {
+  
+  NSString* desc = [description text];
+  NSString* locationStr = [location text];
+  //NSString* timeStr = [time text];
+  NSString* subjectStr = [subject text];
+  int uId = [Utilities getUserId];
+  
+  NSDate* currDate = [NSDate date];
+  Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:uId withSubject:subjectStr withDescription:desc withLocation:@"nil" withSpecLocation:locationStr withDate:currDate withAddDate:currDate];
+  
+  
+  [mainView addNewPin:newPin];
+  
   UIAlertView *shareAlert = [[UIAlertView alloc] initWithTitle:@"Share Your Post"
                                                       message:@"Would you like to share this post on your Social Network?"
                                                      delegate:self

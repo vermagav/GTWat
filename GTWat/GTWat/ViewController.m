@@ -68,21 +68,53 @@
   // Change default map view to above
   [self->mapView setRegion:region animated:YES];
   
+<<<<<<< HEAD
   // Show user location (blue dot)
   self->mapView.showsUserLocation = YES;
   
   
+=======
+  [self loadPins];
+}
+
+-(void) loadPins {
+  
+  Cache* cache = [Cache getCacheInst];
+  
+  NSMutableDictionary* pinDict;
+  [cache readPinsFromDB:&pinDict];
+  NSArray* keys = [pinDict allKeys];
+  for(int i = 0; i < [keys count]; i++) {
+    NSNumber* key = [keys objectAtIndex:i];
+    Pin* pin = [pinDict objectForKey:key];
+    
+    NSString* locationStr = [pin location];
+    NSArray* locArray = [locationStr componentsSeparatedByString:@","];
+    NSString* longitudeStr = [locArray objectAtIndex:0];
+    NSString* latStr = [locArray objectAtIndex:1];
+    
+    double longitude = [longitudeStr doubleValue];
+    double latitude = [latStr doubleValue];
+    
+    CLLocation* pinLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+
+    MKPointAnnotation* pa = [[MKPointAnnotation alloc] init];
+    pa.coordinate = pinLocation.coordinate;
+    pa.title = [pin subject];
+    [mapView addAnnotation:pa];
+  }
+>>>>>>> Loads pins on start.
 }
 
 -(void) addNewPin:(Pin*) pin {
   [pin setAnnotationView:newPin];
-  [mapView addAnnotation:newPin];
+  [mapView setNeedsDisplay];
   newPin = nil;
 }
 
 -(void) longPressOccurred: (UIGestureRecognizer*) recognizer {
   NSLog(@"Long Press");
-  
+
   if(recognizer.state == UIGestureRecognizerStateEnded) {
     CGPoint touchPoint = [recognizer locationInView:mapView];
     CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
@@ -91,6 +123,7 @@
     newPin.coordinate = touchMapCoordinate;
     newPin.title = @"Hello";
     //[mapView addAnnotation:pa];
+    
     [self performSegueWithIdentifier:@"PinSegue" sender:self];
   }
 }
