@@ -105,8 +105,12 @@
   NSString* subjectStr = [subject text];
   int uId = [Utilities getUserId];
   
+  double latitude = _currLocation.coordinate.latitude;
+  double longitude = _currLocation.coordinate.longitude;
+  NSString* locStr = [NSString stringWithFormat:@"%f,%f", longitude, latitude ];
+  
   NSDate* currDate = [NSDate date];
-  Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:uId withSubject:subjectStr withDescription:desc withLocation:@"nil" withSpecLocation:locationStr withDate:currDate withAddDate:currDate withPinType: _selectedPinType];
+  Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:uId withSubject:subjectStr withDescription:desc withLocation:locStr withSpecLocation:locationStr withDate:currDate withAddDate:currDate withPinType: _selectedPinType];
   
   
   [mainView addNewPin:newPin];

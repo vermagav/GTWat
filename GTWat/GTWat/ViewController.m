@@ -106,7 +106,9 @@
 
 -(void) addNewPin:(Pin*) pin {
   [pin setAnnotationView:newPin];
-  [mapView setNeedsDisplay];
+  [dataSource addPin:pin];
+  [dataSource syncCache];
+  [self loadPins];
   newPin = nil;
 }
 
@@ -117,6 +119,8 @@
     CGPoint touchPoint = [recognizer locationInView:mapView];
     CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
     
+    touchLoc = [[CLLocation alloc] initWithLatitude:touchMapCoordinate.latitude longitude:touchMapCoordinate.longitude];
+
     //MKCircle *circle = [MKCircle circleWithCenterCoordinate:touchMapCoordinate radius:1];
     //[mapView addOverlay:circle];
     
@@ -144,7 +148,8 @@
   if([destination isKindOfClass: [DataViewController class]]) {
     DataViewController* upcomingDataView = [segue destinationViewController];
     [upcomingDataView getStared:newPin with:mapView];
-    [upcomingDataView setCurrLocation:currLocation];
+    [upcomingDataView setCurrLocation:touchLoc];
+    [upcomingDataView setMainView:self];
   }
   else {
     SettingsViewController* settingsController = (SettingsViewController*) [segue destinationViewController];
