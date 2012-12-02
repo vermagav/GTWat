@@ -130,6 +130,7 @@
 		7A7E9A8D16375A53000AFF66 /* GTWat */ = {
 			isa = PBXGroup;
 			children = (
+				AA69D9D2166BDFB800C7D295 /* Resources */,
 				AA28870D163DD72700FE140C /* Backend */,
 				AA288708163DD62F00FE140C /* SettingsView */,
 				AAB20989163DB3F8003EEC55 /* DataView */,
@@ -148,6 +149,7 @@
 		7A7E9A8E16375A53000AFF66 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9ACBAC2316641D2600168156 /* cache.db */,
 				7A7E9A8F16375A53000AFF66 /* GTWat-Info.plist */,
 				7A7E9A9016375A53000AFF66 /* InfoPlist.strings */,
 				7A7E9A9316375A53000AFF66 /* main.m */,
@@ -187,13 +189,19 @@
 		AA28870E163DD80300FE140C /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				9ACBAC2316641D2600168156 /* cache.db */,
 				AA28870F163DD82100FE140C /* Cache.h */,
 				AA288710163DD82100FE140C /* Cache.mm */,
 				AA288713163DD84700FE140C /* SyncHelper.h */,
 				AA288714163DD84700FE140C /* SyncHelper.m */,
 			);
 			name = Cache;
+			sourceTree = "<group>";
+		};
+		AA69D9D2166BDFB800C7D295 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		AAB20989163DB3F8003EEC55 /* DataView */ = {
