@@ -9,12 +9,14 @@
 #import "SettingsViewController.h"
 #import "Utilities.h"
 #import "SyncHelper.h"
+#import "ViewController.h"
 
 @interface SettingsViewController ()
 
 @end
 
 @implementation SettingsViewController
+@synthesize mainView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +35,16 @@
   [idLabel setText:idStr];
   
 	// Do any additional setup after loading the view.
+}
+
+-(IBAction)switchAlerts:(id)sender {
+  [mainView setShowAlerts: [alertSwitch isOn]];
+}
+-(IBAction)switchQuestions:(id)sender {
+  [mainView setShowQuestions: [questionSwitch isOn]];
+}
+-(IBAction)switchEvents:(id)sender {
+  [mainView setShowEvents: [eventSwitch isOn]];
 }
 
 -(IBAction)done:(id)sender {
