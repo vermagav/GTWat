@@ -28,6 +28,8 @@ typedef enum PinType {
   IBOutlet MKMapView* map;
   
   UIPopoverController* popover;
+  
+  PinType _selectedPinType;
 }
 
 @property PinType selectedPinType;

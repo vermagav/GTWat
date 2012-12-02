@@ -15,7 +15,7 @@
 
 @implementation DataViewController
 
-@synthesize selectedPinType;
+@synthesize selectedPinType = _selectedPinType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
