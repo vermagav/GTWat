@@ -11,6 +11,8 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+@class ViewController;
+
 typedef enum PinType {
   Question,
   Alert,
@@ -38,6 +40,7 @@ typedef enum PinType {
 }
 
 @property PinType selectedPinType;
+@property(nonatomic, retain) ViewController* mainView;
 
 @property(nonatomic, retain) CLLocation* currLocation;
 

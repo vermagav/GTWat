@@ -11,6 +11,7 @@
 
 @class DataViewController;
 @class SyncHelper;
+@class Pin;
 
 @interface ViewController : UIViewController <CLLocationManagerDelegate> {
   NSTimer* pressTimer;
@@ -29,6 +30,8 @@
   BOOL _showEvents;
   
   CLLocation* currLocation;
+  
+  NSMutableArray* displayPins;
 }
 
 @property BOOL showAlerts;
@@ -36,5 +39,7 @@
 @property BOOL showQuestions;
 
 -(void) longPressOccurred: (UIGestureRecognizer*) recognizer;
+-(void) addNewPin:(Pin*) pin;
+-(void) loadPins;
 
 @end
