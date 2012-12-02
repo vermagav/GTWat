@@ -30,6 +30,12 @@
   UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
   [mapView addGestureRecognizer:longPressRec];
   [longPressRec release];
+
+  // Initialize map view observer for zooming to user location
+  [self->mapView.userLocation addObserver:self
+                                forKeyPath:@"location"
+                                   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                   context:nil];
 }
 
 -(void) longPressOccurred: (UIGestureRecognizer*) recognizer {
@@ -55,6 +61,29 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// Listen to change in the userLocation
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    MKCoordinateRegion region;
+    region.center = self->mapView.userLocation.coordinate;
+    
+    MKCoordinateSpan span;
+    span.latitudeDelta  = 0.5; // Change these values to change the zoom
+    span.longitudeDelta = 0.5;
+    region.span = span;
+    
+    [self->mapView setRegion:region animated:YES];
+}
+
+// Cleanup for user location code
+- (void)dealloc
+{
+    [self->mapView.userLocation removeObserver:self forKeyPath:@"location"];
+    [self->mapView removeFromSuperview]; // release crashes app
+     self->mapView = nil;
+    [super dealloc];
 }
 
 @end
