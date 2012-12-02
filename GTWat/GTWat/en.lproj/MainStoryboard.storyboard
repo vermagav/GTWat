@@ -394,9 +394,21 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ICi-By-2b5"/>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BGs-bJ-b4g"/>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2TQ-Hi-fH8"/>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ICi-By-2b5">
+                                <connections>
+                                    <action selector="switchQuestions:" destination="yFX-n3-8Dd" eventType="valueChanged" id="twK-V8-xd8"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BGs-bJ-b4g">
+                                <connections>
+                                    <action selector="switchAlerts:" destination="yFX-n3-8Dd" eventType="valueChanged" id="TrN-sH-Pwh"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2TQ-Hi-fH8">
+                                <connections>
+                                    <action selector="switchEvents:" destination="yFX-n3-8Dd" eventType="valueChanged" id="ZoK-T1-iCT"/>
+                                </connections>
+                            </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpy-yV-dLD">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Sync">
@@ -509,6 +521,9 @@
                 <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="forceSync:"/>
                 <relationship kind="action" name="restoreApp:"/>
+                <relationship kind="action" name="switchAlerts:"/>
+                <relationship kind="action" name="switchEvents:"/>
+                <relationship kind="action" name="switchQuestions:"/>
                 <relationship kind="outlet" name="alertSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="eventSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="idLabel" candidateClass="UILabel"/>

@@ -21,6 +21,8 @@
 
 @implementation ViewController
 
+@synthesize showAlerts = _showAlerts, showEvents = _showEvents, showQuestions = _showQuestions;
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
@@ -62,8 +64,39 @@
     [upcomingDataView getStared:pa with:mapView];
   }
   else {
-    
+    SettingsViewController* settingsController = (SettingsViewController*) [segue destinationViewController];
+    [settingsController setMainView:self];
   }
+}
+
+-(BOOL) showEvents {
+  return _showEvents;
+}
+
+-(void) setShowEvents:(BOOL)sEvents {
+  _showEvents = sEvents;
+  [mapView setNeedsDisplay];
+  [[self view] setNeedsDisplay];
+}
+
+-(BOOL) showAlerts {
+  return _showAlerts;
+}
+
+-(void) setShowAlerts:(BOOL)sAlerts {
+  _showAlerts = sAlerts;
+  [mapView setNeedsDisplay];
+  [[self view] setNeedsDisplay];
+}
+
+-(BOOL) showQuestions {
+  return _showQuestions;
+}
+
+-(void) setShowQuestions:(BOOL)sQuestions {
+  _showQuestions = sQuestions;
+  [mapView setNeedsDisplay];
+  [[self view] setNeedsDisplay];
 }
 
 - (void)didReceiveMemoryWarning

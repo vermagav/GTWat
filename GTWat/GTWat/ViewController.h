@@ -23,7 +23,16 @@
   IBOutlet DataViewController* dvc;
   
   MKPointAnnotation* pa;
+
+  
+  BOOL _showAlerts;
+  BOOL _showQuestions;
+  BOOL _showEvents;
 }
+
+@property BOOL showAlerts;
+@property BOOL showEvents;
+@property BOOL showQuestions;
 
 -(void) longPressOccurred: (UIGestureRecognizer*) recognizer;
 

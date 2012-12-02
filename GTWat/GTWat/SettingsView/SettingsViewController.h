@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class ViewController;
+
 @interface SettingsViewController : UIViewController {
   IBOutlet UILabel* idLabel;
   
@@ -15,6 +17,8 @@
   IBOutlet UISwitch* alertSwitch;
   IBOutlet UISwitch* eventSwitch;
 }
+
+@property(nonatomic, retain) ViewController* mainView;
 
 -(IBAction)done:(id)sender;
 
