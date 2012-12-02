@@ -113,7 +113,11 @@
   [UIView beginAnimations: @"anim" context: nil];
   [UIView setAnimationBeginsFromCurrentState: YES];
   [UIView setAnimationDuration: movementDuration];
-  scrollView.frame = CGRectOffset(self.view.frame, 0, movement);
+  //if (up){
+    scrollView.frame = CGRectOffset(scrollView.frame, 0, movement);
+  //}else{
+    //[scrollView setFrame:CGRectMake(0, 0 ,CGRectGetWidth(self->scrollView.frame), CGRectGetHeight(self->scrollView.frame))];
+  //}
   [UIView commitAnimations];
 }
 
