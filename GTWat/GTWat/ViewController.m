@@ -72,9 +72,7 @@
   self->mapView.showsUserLocation = YES;
   
   [self loadPins];
-  
-  //MKCircle *circle = [MKCircle circleWithCenterCoordinate:userLocation.coordinate radius:1000];
-  //[map addOverlay:circle];
+
 }
 
 -(void) loadPins {
