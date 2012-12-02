@@ -34,6 +34,7 @@
 
   UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
   [mapView addGestureRecognizer:longPressRec];
+  [mapView setDelegate:self];
   [longPressRec release];	
 
   // Initialize map view observer for zooming to user location
@@ -100,7 +101,9 @@
     MKPointAnnotation* pa = [[MKPointAnnotation alloc] init];
     pa.coordinate = pinLocation.coordinate;
     pa.title = [pin subject];
+    
     [mapView addAnnotation:pa];
+    
   }
   
 }
@@ -136,7 +139,9 @@
 
 -(void) addNewPin:(Pin*) pin {
   [pin setAnnotationView:newPin];
-  [mapView setNeedsDisplay];
+  [dataSource addPin:pin];
+  [dataSource syncCache];
+  [self loadPins];
   newPin = nil;
 }
 
@@ -147,6 +152,8 @@
     CGPoint touchPoint = [recognizer locationInView:mapView];
     CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
     
+    touchLoc = [[CLLocation alloc] initWithLatitude:touchMapCoordinate.latitude longitude:touchMapCoordinate.longitude];
+
     //MKCircle *circle = [MKCircle circleWithCenterCoordinate:touchMapCoordinate radius:1];
     //[mapView addOverlay:circle];
     
@@ -168,13 +175,39 @@
   return [circleView autorelease];
 }*/
 
+- (MKAnnotationView *)mapView:(MKMapView *)sender viewForAnnotation:(id < MKAnnotation >)annotation
+{
+  static NSString *reuseId = @"StandardPin";
+  
+  MKPinAnnotationView *aView = (MKPinAnnotationView *)[sender
+                                                       dequeueReusableAnnotationViewWithIdentifier:reuseId];
+  if (aView == nil)
+  {
+    aView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                                             reuseIdentifier:reuseId] autorelease];
+    aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    aView.canShowCallout = YES;
+  }
+  
+  aView.annotation = annotation;
+  
+  return aView;   
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view
+calloutAccessoryControlTapped:(UIControl *)control
+{
+  NSLog(@"accessory button tapped for annotation %@", view.annotation);
+}
+
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   
   UIViewController* destination = [segue destinationViewController];
   if([destination isKindOfClass: [DataViewController class]]) {
     DataViewController* upcomingDataView = [segue destinationViewController];
     [upcomingDataView getStared:newPin with:mapView];
-    [upcomingDataView setCurrLocation:currLocation];
+    [upcomingDataView setCurrLocation:touchLoc];
+    [upcomingDataView setMainView:self];
   }
   else {
     SettingsViewController* settingsController = (SettingsViewController*) [segue destinationViewController];
