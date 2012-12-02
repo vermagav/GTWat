@@ -8,13 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChoosePinTypeViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
+@class DataViewController;
+
+@interface ChoosePinTypeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 
   IBOutlet UIPickerView* pinPicker;
   NSArray* pinTypes;
   
+  IBOutlet UITableView* table;
+  
   IBOutlet UITextView* description;
 }
+
+@property (nonatomic, retain) DataViewController* dataController;
 
 -(IBAction)done:(id)sender;
 

@@ -13,6 +13,7 @@
 #import "Pin.h"
 #import "Comment.h"
 #import "User.h"
+#import "SettingsViewController.h"
 
 @interface ViewController ()
 
@@ -45,6 +46,7 @@
     CGPoint touchPoint = [recognizer locationInView:mapView];
     CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
     pa = [[MKPointAnnotation alloc] init];
+    
     pa.coordinate = touchMapCoordinate;
     pa.title = @"Hello";
     [mapView addAnnotation:pa];
@@ -53,8 +55,15 @@
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  DataViewController* upcomingDataView = [segue destinationViewController];
-  [upcomingDataView getStared:pa with:mapView];
+  
+  UIViewController* destination = [segue destinationViewController];
+  if([destination isKindOfClass: [DataViewController class]]) {
+    DataViewController* upcomingDataView = [segue destinationViewController];
+    [upcomingDataView getStared:pa with:mapView];
+  }
+  else {
+    
+  }
 }
 
 - (void)didReceiveMemoryWarning

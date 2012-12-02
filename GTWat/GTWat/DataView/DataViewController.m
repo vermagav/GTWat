@@ -7,12 +7,15 @@
 //
 
 #import "DataViewController.h"
+#import "ChoosePinTypeViewController.h"
 
 @interface DataViewController ()
 
 @end
 
 @implementation DataViewController
+
+@synthesize selectedPinType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +39,9 @@
 
 }
 
+-(IBAction)cancel:(id)sender {
+  [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 -(IBAction)done:(id)sender {
   UIAlertView *shareAlert = [[UIAlertView alloc] initWithTitle:@"Share Your Post"
@@ -114,6 +120,18 @@
 //Hide Keyboard
 - (void) hideKeyboard {
   [self.view endEditing:YES];
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  UIViewController* destination = [segue destinationViewController];
+  
+  if([destination isKindOfClass: [ChoosePinTypeViewController class]]) {
+    ChoosePinTypeViewController* pinView = [segue destinationViewController];
+    [pinView setDataController:self];
+  }
+  else {
+    
+  }
 }
 
 @end
