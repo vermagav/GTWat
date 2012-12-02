@@ -31,6 +31,7 @@
 {
   [super viewDidLoad];
   navBar.topItem.title = @"New Post";
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissSheet) name:UIApplicationWillResignActiveNotification object:nil];
   UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
   // For selecting cell.
   gestureRecognizer.cancelsTouchesInView = NO;
@@ -45,12 +46,36 @@
 }
 
 - (IBAction)changePinType:(id)sender {
-  UIPickerView *picker = [[UIPickerView alloc]
-                          initWithFrame:CGRectMake(0, 244, 320, 270)];
-  picker.delegate = self;
-  picker.dataSource = self;
-  [self.view addSubview:picker];
-  [picker release];
+  actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                           delegate:nil
+                                                  cancelButtonTitle:nil
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:nil];
+  
+  [actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+  
+  CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
+  
+  UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
+  pickerView.showsSelectionIndicator = YES;
+  pickerView.dataSource = self;
+  pickerView.delegate = self;
+  
+  [actionSheet addSubview:pickerView];
+  [pickerView release];
+  
+  UISegmentedControl *closeButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:@"Close"]];
+  closeButton.momentary = YES;
+  closeButton.frame = CGRectMake(260, 7.0f, 50.0f, 30.0f);
+  closeButton.segmentedControlStyle = UISegmentedControlStyleBar;
+  closeButton.tintColor = [UIColor blackColor];
+  [closeButton addTarget:actionSheet action:@selector(dismissWithClickedButtonIndex: animated: ) forControlEvents:UIControlEventValueChanged];
+  [actionSheet addSubview:closeButton];
+  //[closeButton release];
+  
+  [actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
+  
+  [actionSheet setBounds:CGRectMake(0, 0, 320, 485)];
 }
 
 - (IBAction)done:(id)sender {
@@ -144,21 +169,27 @@
 }
 
 -(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-  NSLog(@"Row: %d", row );
   return [pinTypes objectAtIndex: row];
 }
 
 #pragma mark PickerView Delegate
 
--(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)PickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
   
-  NSString* descStr = [NSString stringWithFormat:@"Add description of pin type here for: %@", [pinTypes objectAtIndex:row]];
-  
-  [description setText:descStr];
+  NSLog(@"Selected Type: %@. Index of selected type: %i", [pinTypes objectAtIndex:row], row);
+  [changePinTypeButton setTitle:[NSString stringWithFormat:@"Pin Type: %@", [pinTypes objectAtIndex:row]] forState:UIControlStateNormal];
+}
+
+-(void)dismissActionSheet{
+  if (actionSheet){
+    [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+    [actionSheet release];
+  }
 }
 
 - (void)dealloc {
   [_selectedPinType release];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
   [super dealloc];
 }
 @end
