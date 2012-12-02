@@ -25,10 +25,15 @@
   _entryId = entryId;
   _userId = userId;
   _subject = subject;
+  [_subject retain];
   _description = description;
+  [_description retain];
   _location = location;
+  [_location retain];
   _specLocation = specLocation;
+  [_specLocation retain];
   _date = date;
+  [_date retain];
   _addDate = addDate;
   
   return self;

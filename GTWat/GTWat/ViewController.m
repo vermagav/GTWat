@@ -14,6 +14,8 @@
 #import "Comment.h"
 #import "User.h"
 #import "SettingsViewController.h"
+#import "PinAnnotationView.h"
+#import "DisplayViewController.h"
 
 #import <CoreLocation/CLLocation.h>
 
@@ -98,14 +100,13 @@
     
     CLLocation* pinLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
 
-    MKPointAnnotation* pa = [[MKPointAnnotation alloc] init];
+    PinAnnotationView* pa = [[PinAnnotationView alloc] init];
     pa.coordinate = pinLocation.coordinate;
     pa.title = [pin subject];
+    [pa setPin:pin];
     
     [mapView addAnnotation:pa];
-    
   }
-  
 }
 
 /*
@@ -139,6 +140,8 @@
 
 -(void) addNewPin:(Pin*) pin {
   [pin setAnnotationView:newPin];
+  [newPin setPin: pin];
+  
   [dataSource addPin:pin];
   [dataSource syncCache];
   [self loadPins];
@@ -157,7 +160,7 @@
     //MKCircle *circle = [MKCircle circleWithCenterCoordinate:touchMapCoordinate radius:1];
     //[mapView addOverlay:circle];
     
-    newPin = [[MKPointAnnotation alloc] init];
+    newPin = [[PinAnnotationView alloc] init];
     
     newPin.coordinate = touchMapCoordinate;
     newPin.title = @"Hello";
@@ -183,8 +186,9 @@
                                                        dequeueReusableAnnotationViewWithIdentifier:reuseId];
   if (aView == nil)
   {
-    aView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
-                                             reuseIdentifier:reuseId] autorelease];
+    aView = (MKPinAnnotationView*)[[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId] autorelease];
+    //aView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
+     //                                        reuseIdentifier:reuseId] autorelease];
     aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     aView.canShowCallout = YES;
   }
@@ -198,6 +202,16 @@
 calloutAccessoryControlTapped:(UIControl *)control
 {
   NSLog(@"accessory button tapped for annotation %@", view.annotation);
+  
+  PinAnnotationView* pinAnno = (PinAnnotationView*)(view.annotation);
+  selectedPin = pinAnno;
+  Pin* pin = [pinAnno pin];
+  NSArray* comments = [self getCommentsForPin: [pin entryId]];
+  [pin setComments:comments];
+  
+  NSLog(@"Pin name: %@", [pin subject] );
+
+  [self performSegueWithIdentifier:@"ViewPinSegue" sender:self];
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -209,9 +223,13 @@ calloutAccessoryControlTapped:(UIControl *)control
     [upcomingDataView setCurrLocation:touchLoc];
     [upcomingDataView setMainView:self];
   }
-  else {
+  else if ([destination isKindOfClass: [SettingsViewController class]]){
     SettingsViewController* settingsController = (SettingsViewController*) [segue destinationViewController];
     [settingsController setMainView:self];
+  }
+  else if([destination isKindOfClass: [DisplayViewController class]]){
+    DisplayViewController* display = (DisplayViewController*) [segue destinationViewController];
+    [display setPin: [selectedPin pin]];
   }
 }
 

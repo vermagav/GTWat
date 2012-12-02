@@ -12,6 +12,7 @@
 @class DataViewController;
 @class SyncHelper;
 @class Pin;
+@class PinAnnotationView;
 
 @interface ViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate> {
   NSTimer* pressTimer;
@@ -23,7 +24,8 @@
   IBOutlet MKMapView* mapView;
   IBOutlet DataViewController* dvc;
   
-  MKPointAnnotation* newPin;
+  PinAnnotationView* newPin;
+  PinAnnotationView* selectedPin;
   
   BOOL _showAlerts;
   BOOL _showQuestions;

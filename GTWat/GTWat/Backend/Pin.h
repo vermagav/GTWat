@@ -43,7 +43,7 @@
 @property (nonatomic, retain) NSDate* date;
 @property (nonatomic, retain) NSDate* addDate;
 
-@property (nonatomic, retain) NSMutableArray* comments;
+@property (nonatomic, retain) NSArray* comments;
 
 -(id) initWithEntryId:(int) entryId withUserId:(int) userId withSubject:(NSString*) subject withDescription:(NSString*) description withLocation:(NSString*) location withSpecLocation:(NSString*) specLocation withDate:(NSDate*) date withAddDate:(NSDate*) addDate withPinType:(int) pinType;
 

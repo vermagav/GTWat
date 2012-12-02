@@ -20,6 +20,8 @@
 		7A7E9AA416375A53000AFF66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E9AA316375A53000AFF66 /* ViewController.m */; };
 		9ACBAC2416641D2600168156 /* cache.db in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBAC2316641D2600168156 /* cache.db */; };
 		AA0DA1301658089000E86FD5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0DA12F1658089000E86FD5 /* User.m */; };
+		AA21B97A166C08E5006DB9AF /* PinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21B979166C08E5006DB9AF /* PinAnnotationView.m */; };
+		AA21B97E166C0D9D006DB9AF /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21B97D166C0D9D006DB9AF /* DisplayViewController.m */; };
 		AA28870C163DD64500FE140C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28870B163DD64500FE140C /* SettingsViewController.m */; };
 		AA288711163DD82100FE140C /* Cache.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA288710163DD82100FE140C /* Cache.mm */; };
 		AA288715163DD84700FE140C /* SyncHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA288714163DD84700FE140C /* SyncHelper.m */; };
@@ -55,6 +57,10 @@
 		9ACBAC2316641D2600168156 /* cache.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = cache.db; path = Backend/Cache/cache.db; sourceTree = "<group>"; };
 		AA0DA12E1658089000E86FD5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Backend/User.h; sourceTree = "<group>"; };
 		AA0DA12F1658089000E86FD5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Backend/User.m; sourceTree = "<group>"; };
+		AA21B978166C08E5006DB9AF /* PinAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PinAnnotationView.h; path = Backend/PinAnnotationView.h; sourceTree = "<group>"; };
+		AA21B979166C08E5006DB9AF /* PinAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PinAnnotationView.m; path = Backend/PinAnnotationView.m; sourceTree = "<group>"; };
+		AA21B97C166C0D9D006DB9AF /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayViewController.h; path = DataView/DisplayViewController.h; sourceTree = "<group>"; };
+		AA21B97D166C0D9D006DB9AF /* DisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DisplayViewController.m; path = DataView/DisplayViewController.m; sourceTree = "<group>"; };
 		AA28870A163DD64500FE140C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = SettingsView/SettingsViewController.h; sourceTree = "<group>"; };
 		AA28870B163DD64500FE140C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = SettingsView/SettingsViewController.m; sourceTree = "<group>"; };
 		AA28870F163DD82100FE140C /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cache.h; path = Backend/Cache/Cache.h; sourceTree = "<group>"; };
@@ -182,6 +188,8 @@
 				AA958E06165ACB0E00FE3940 /* Pin.m */,
 				AA958E09165AFED100FE3940 /* Comment.h */,
 				AA958E0A165AFED100FE3940 /* Comment.m */,
+				AA21B978166C08E5006DB9AF /* PinAnnotationView.h */,
+				AA21B979166C08E5006DB9AF /* PinAnnotationView.m */,
 			);
 			name = Backend;
 			sourceTree = "<group>";
@@ -212,6 +220,8 @@
 				AAB2098C163DB42F003EEC55 /* DataView.m */,
 				AAB2098E163DB44A003EEC55 /* DataViewController.h */,
 				AAB2098F163DB44A003EEC55 /* DataViewController.m */,
+				AA21B97C166C0D9D006DB9AF /* DisplayViewController.h */,
+				AA21B97D166C0D9D006DB9AF /* DisplayViewController.m */,
 			);
 			name = DataView;
 			sourceTree = "<group>";
@@ -306,6 +316,8 @@
 				AA0DA1301658089000E86FD5 /* User.m in Sources */,
 				AA958E07165ACB0E00FE3940 /* Pin.m in Sources */,
 				AA958E0B165AFED200FE3940 /* Comment.m in Sources */,
+				AA21B97A166C08E5006DB9AF /* PinAnnotationView.m in Sources */,
+				AA21B97E166C0D9D006DB9AF /* DisplayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
