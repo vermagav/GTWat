@@ -26,9 +26,11 @@
 - (id) init {
   self = [super init];
   
-  NSString* dbPath = [[NSBundle mainBundle] pathForResource:@"cache" ofType:@"db"];
+  //NSString* dbPath = [[NSBundle mainBundle] pathForResource:@"cache" ofType:@"db"];
   
-  cache = [[Cache alloc] initWithDatabase:dbPath];
+  //cache = [[Cache alloc] initWithDatabase:dbPath];
+  
+  cache = [Cache getCacheInst];
   
   [self syncCache];
   
@@ -46,9 +48,9 @@
 -(void) syncCache {
   _isWritingToCache = YES;
   
-  cachedUsers = [self requestUsers];
-  cachedComments = [self requestComments];
-  cachedPins = [self requestPins];
+  NSDictionary* cachedUsers = [self requestUsers];
+  NSDictionary* cachedComments = [self requestComments];
+  NSDictionary* cachedPins = [self requestPins];
   
   [cache clearUsersFromDB];
   [cache clearCommentsFromDB];

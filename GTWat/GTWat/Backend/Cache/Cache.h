@@ -35,4 +35,8 @@
 -(BOOL) readPinsFromDB:(NSMutableDictionary**) pins;
 -(BOOL) clearPinsFromDB;
 
++(Cache*) getCacheInst;
+
 @end
+
+static Cache* cacheInst;
