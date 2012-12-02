@@ -68,12 +68,9 @@
   // Change default map view to above
   [self->mapView setRegion:region animated:YES];
   
-<<<<<<< HEAD
   // Show user location (blue dot)
   self->mapView.showsUserLocation = YES;
   
-  
-=======
   [self loadPins];
 }
 
@@ -103,7 +100,7 @@
     pa.title = [pin subject];
     [mapView addAnnotation:pa];
   }
->>>>>>> Loads pins on start.
+  
 }
 
 -(void) addNewPin:(Pin*) pin {
