@@ -19,7 +19,7 @@ typedef enum PinType {
   Event
 } PinType;
 
-@interface DataViewController : UIViewController <UIAlertViewDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
+@interface DataViewController : UIViewController <UIAlertViewDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate> {
   IBOutlet UINavigationBar* navBar;
   
   IBOutlet UITextField* subject;
@@ -34,6 +34,8 @@ typedef enum PinType {
   
   NSArray* pinTypes;
   
+  UIActionSheet *actionSheet;
+
   PinType _selectedPinType;
   
   CLLocation* _currLocation;
@@ -45,7 +47,7 @@ typedef enum PinType {
 @property(nonatomic, retain) CLLocation* currLocation;
 
 -(void) getStared:(MKPointAnnotation*) pa with: (MKMapView *) mapView;
-
+-(void) dismissActionSheet;
 - (IBAction)done:(id)sender;
 - (IBAction)cancel:(id)sender;
 - (IBAction)changePinType:(id)sender;
