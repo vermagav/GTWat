@@ -17,6 +17,7 @@
 @synthesize location = _location, specificLocation = _specLocation;
 @synthesize date = _date, addDate = _addDate;
 @synthesize comments = _comments;
+@synthesize annotationView = _annotationView;
 
 -(id) initWithEntryId:(int) entryId withUserId:(int) userId withSubject:(NSString*) subject withDescription:(NSString*) description withLocation:(NSString*) location withSpecLocation:(NSString*) specLocation withDate:(NSDate*) date withAddDate:(NSDate*) addDate {
   self = [super init];
@@ -29,6 +30,13 @@
   _specLocation = specLocation;
   _date = date;
   _addDate = addDate;
+  
+  return self;
+}
+
+-(id) withAnnotationView: (MKPointAnnotation*) annotationView initWithEntryId:(int) entryId withUserId:(int) userId withSubject:(NSString*) subject withDescription:(NSString*) description withLocation:(NSString*) location withSpecLocation:(NSString*) specLocation withDate:(NSDate*) date withAddDate:(NSDate*) addDate {
+  self = [self initWithEntryId:entryId withUserId:userId withSubject:subject withDescription:description withLocation:location withSpecLocation:specLocation withDate:date withAddDate:addDate];
+  _annotationView = annotationView;
   
   return self;
 }
