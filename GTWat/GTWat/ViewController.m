@@ -67,6 +67,11 @@
   
   // Change default map view to above
   [self->mapView setRegion:region animated:YES];
+  
+  // Show user location (blue dot)
+  self->mapView.showsUserLocation = YES;
+  
+  
 }
 
 -(void) addNewPin:(Pin*) pin {
