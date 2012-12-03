@@ -29,6 +29,9 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+  [self.view addGestureRecognizer:gestureRecognizer];
+  [gestureRecognizer release];
   NSString* subject = [pin subject];
   NSString* description = [pin description];
   NSString* specLoc = [pin specificLocation];
@@ -36,7 +39,7 @@
   NSDateFormatter* dateReader = [[NSDateFormatter alloc] init];
   [dateReader setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
   NSString* dateStr = [dateReader stringFromDate:date];
-  
+  gestureRecognizer.cancelsTouchesInView = NO;
   NSString* type = NSStringFromClass([description class]);
   NSLog(@"Type: %@", type);
   
@@ -88,6 +91,34 @@
 
 -(IBAction)done:(id)sender {
   [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+  [self slideFrame:YES with:215];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+  [self slideFrame:NO with:215];
+}
+
+-(void) slideFrame:(BOOL) up with: (int) dist
+{
+  const int movementDistance = dist; // tweak as needed
+  const float movementDuration = 0.3f; // tweak as needed
+  
+  int movement = (up ? -movementDistance : movementDistance);
+  
+  [UIView beginAnimations: @"anim" context: nil];
+  [UIView setAnimationBeginsFromCurrentState: YES];
+  [UIView setAnimationDuration: movementDuration];
+  scrollView.frame = CGRectOffset(scrollView.frame, 0, movement);
+  [UIView commitAnimations];
+}
+
+
+//Hide Keyboard
+- (void) hideKeyboard {
+  [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning

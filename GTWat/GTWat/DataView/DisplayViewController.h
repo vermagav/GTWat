@@ -11,13 +11,14 @@
 
 @class Pin;
 
-@interface DisplayViewController : UIViewController {
+@interface DisplayViewController : UIViewController <UITextViewDelegate> {
   IBOutlet MKMapView* map;
   
   IBOutlet UILabel* subjectLabel;
   IBOutlet UITextView* descLabel;
   IBOutlet UILabel* locationLabel;
   IBOutlet UILabel* time;
+  IBOutlet UIScrollView* scrollView;
   
   IBOutlet UINavigationBar* navBar;
   
