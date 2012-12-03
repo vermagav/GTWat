@@ -45,9 +45,11 @@
   NSString* description = [pin description];
   NSString* specLoc = [pin specificLocation];
   NSDate* date = [pin date];
+  NSDate* addDate = [pin addDate];
   NSDateFormatter* dateReader = [[NSDateFormatter alloc] init];
   [dateReader setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
   NSString* dateStr = [dateReader stringFromDate:date];
+  NSString* adddateStr = [dateReader stringFromDate:addDate];
   gestureRecognizer.cancelsTouchesInView = NO;
   NSString* type = NSStringFromClass([description class]);
   NSLog(@"Type: %@", type);
@@ -57,6 +59,7 @@
   [descLabel setText:description];
   [locationLabel setText:specLoc];
   [time setText:dateStr];
+  [addtime setText:adddateStr];
   
   int pinType = [pin pinType];
   NSString* pinTypeStr = @"";

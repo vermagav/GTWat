@@ -53,7 +53,7 @@
   span.longitudeDelta = 0.005;
   region.span = span;
   isTypeSelected = false;
-  
+  chosenDate = nil;
   currentOffset = 0;
   
   // Change default map view to above
@@ -138,7 +138,7 @@
   NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
   [dateFormat setDateFormat:@"MMM d, YYYY HH:mm"];
   NSString *dateString = [dateFormat stringFromDate:datePickerView.date];
-  
+  chosenDate= [[NSDate alloc] initWithTimeInterval:0 sinceDate:datePickerView.date];
   [time setText:dateString];
   [self.view endEditing:YES];
 }
@@ -176,7 +176,11 @@
     NSString* locStr = [NSString stringWithFormat:@"%f,%f", longitude, latitude ];
   
     NSDate* currDate = [NSDate date];
-    Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:uId withSubject:subjectStr withDescription:desc withLocation:locStr withSpecLocation:locationStr withDate:currDate withAddDate:currDate withPinType: _selectedPinType];
+    NSDateFormatter* dateReader = [[NSDateFormatter alloc] init];
+    [dateReader setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    //NSDate* eventDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:datePickerView.date];
+    
+    Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:uId withSubject:subjectStr withDescription:desc withLocation:locStr withSpecLocation:locationStr withDate:chosenDate withAddDate:currDate withPinType: _selectedPinType];
   
   
     [mainView addNewPin:newPin];

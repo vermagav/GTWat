@@ -35,6 +35,7 @@
   _date = date;
   [_date retain];
   _addDate = addDate;
+  [_addDate retain];
   
   NSArray *descParse = [description componentsSeparatedByString:@":"];
   int numElements = [descParse count];

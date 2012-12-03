@@ -35,6 +35,7 @@ typedef enum PinType {
   NSArray* pinTypes;
   Boolean isTypeSelected;
   UIDatePicker * datePickerView;
+  NSDate* chosenDate;
   int currentOffset;
   
   UIActionSheet *actionSheet;

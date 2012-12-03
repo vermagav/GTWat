@@ -17,6 +17,7 @@
   IBOutlet UILabel* subjectLabel;
   IBOutlet UITextView* descLabel;
   IBOutlet UILabel* locationLabel;
+  IBOutlet UILabel* addtime;
   IBOutlet UILabel* time;
   IBOutlet UIScrollView* scrollView;
   
