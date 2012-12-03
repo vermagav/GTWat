@@ -27,7 +27,7 @@
 }
 
 -(void) viewDidLayoutSubviews {
-  [self viewDidLoad];
+  [self displayComments];
 }
 
 - (void)viewDidLoad
@@ -91,8 +91,6 @@
   // Change default map view to above
   [map setRegion:region animated:YES];
   
-  [self displayComments];
-  
 	// Do any additional setup after loading the view.
 }
 
@@ -106,18 +104,32 @@
   
   int maxHeight = 80;
   
+  int spacingBetween = 90;
+  
   int borderThickness = 2;
   
-  CGRect border = CGRectMake(commentStartX-borderThickness, commentStartY-borderThickness, commentWidth+2*borderThickness, commentHeight+2*borderThickness);
-  UIView* bview = [[UIView alloc] initWithFrame:border];
-  [bview setBackgroundColor:[UIColor darkGrayColor]];
-  [self->scrollView addSubview:bview];
+  for(int i = 0; i < [comments count]; i++) {
   
-  CGRect rect = CGRectMake(commentStartX, commentStartY, commentWidth, commentHeight);
-  UITextView* textView = [[UITextView alloc] initWithFrame:rect];
-  [textView setText:@"YAY"];
+    //Diff should be in commentStartY
+    
+    Comment* comment = [comments objectAtIndex:i];
+    NSString* commentString = [comment text];
+    
+    CGRect border = CGRectMake(commentStartX-borderThickness, commentStartY-borderThickness, commentWidth+2*borderThickness, commentHeight+2*borderThickness);
+    UIView* bview = [[UIView alloc] initWithFrame:border];
+    [bview setBackgroundColor:[UIColor darkGrayColor]];
+    [self->scrollView addSubview:bview];
   
-  [scrollView addSubview:textView];
+    CGRect rect = CGRectMake(commentStartX, commentStartY, commentWidth, commentHeight);
+    UITextView* textView = [[UITextView alloc] initWithFrame:rect];
+    [textView setEditable:NO];
+    [textView setText:commentString];
+  
+    [scrollView addSubview:textView];
+    
+    commentStartY = commentStartY + spacingBetween;
+    
+  }
   
   CGSize size = scrollView.frame.size;
   
@@ -127,14 +139,11 @@
   
   CGSize mainViewSize = self.view.frame.size;
   float width = mainViewSize.width;
-  float height = mainViewSize.height;
   
-  CGSize newScrollSize = CGSizeMake(width, size.height+maxHeight+20);
+  CGSize newScrollSize = CGSizeMake(width, commentStartY+spacingBetween);
   
   [scrollView setFrame:CGRectMake(0, 40, 320, 504)];
   [scrollView setContentSize:newScrollSize];
-  
-  //[[self view] autoresizesSubviews];
 }
 
 -(IBAction)done:(id)sender {
