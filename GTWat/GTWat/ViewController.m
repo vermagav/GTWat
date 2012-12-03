@@ -213,13 +213,13 @@
     }
     aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     aView.canShowCallout = YES;
+    aView.annotation = annotation;
   }
-  if ([annotation isKindOfClass:[MKUserLocation class]]){
+  if ([annotation isKindOfClass:[MKUserLocation class]] && updateUserLocation){
     [mapView setCenterCoordinate:mapView.userLocation.location.coordinate animated:YES];
+    updateUserLocation= false;
+    return nil;
   }
-  
-  aView.annotation = annotation;
-  
   return aView;   
 }
 
@@ -255,10 +255,9 @@ calloutAccessoryControlTapped:(UIControl *)control
     [settingsController setShowQuestions:_showQuestions];
     [settingsController setMainView:self];
   }
-  else if([destination isKindOfClass: [DisplayViewController class]] && updateUserLocation){
+  else if([destination isKindOfClass: [DisplayViewController class]]){
     DisplayViewController* display = (DisplayViewController*) [segue destinationViewController];
     [display setPin: [selectedPin pin]];
-    updateUserLocation = false;
   }
 }
 

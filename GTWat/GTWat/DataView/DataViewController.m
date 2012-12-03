@@ -101,6 +101,57 @@
   isTypeSelected = true;
 }
 
+- (IBAction)getDate:(id)sender {
+  actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                            delegate:nil
+                                   cancelButtonTitle:nil
+                              destructiveButtonTitle:nil
+                                   otherButtonTitles:nil];
+  
+  [actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+  
+  CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
+  
+  datePickerView = [[UIDatePicker alloc] initWithFrame:pickerFrame];
+  datePickerView.minimumDate = [NSDate date];
+  
+  [actionSheet addSubview:datePickerView];
+  
+  UISegmentedControl *closeButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:@"Close"]];
+  closeButton.momentary = YES;
+  closeButton.frame = CGRectMake(260, 7.0f, 50.0f, 30.0f);
+  closeButton.segmentedControlStyle = UISegmentedControlStyleBar;
+  closeButton.tintColor = [UIColor blackColor];
+  [closeButton addTarget:actionSheet action:@selector(dismissWithClickedButtonIndex: animated: ) forControlEvents:UIControlEventValueChanged];
+  actionSheet.delegate=self;
+  [actionSheet addSubview:closeButton];
+  [closeButton release];
+  
+  [actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
+  
+  [actionSheet setBounds:CGRectMake(0, 0, 320, 485)];
+  
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+  NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+  [dateFormat setDateFormat:@"MMM d, YYYY HH:mm"];
+  NSString *dateString = [dateFormat stringFromDate:datePickerView.date];
+  
+  [time setText:dateString];
+  [self.view endEditing:YES];
+}
+/*
+- (void) dismissActionSheet:(id)sender {
+  [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+  [actionSheet release];
+  [datePickerView release];
+  NSString* jsCallback = [NSString stringWithFormat:@"window.plugins.datePicker._dateSelected(\"%i\");", (int)[datePickerView.date timeIntervalSince1970]];
+  NSLog(jsCallback);
+}
+ */
+
 - (IBAction)done:(id)sender {
   
   NSString* desc = [description text];
@@ -243,13 +294,6 @@
   NSLog(@"Selected Type: %@. Index of selected type: %i", [pinTypes objectAtIndex:row], row);
   [changePinTypeButton setTitle:[NSString stringWithFormat:@"Pin Type: %@", [pinTypes objectAtIndex:row]] forState:UIControlStateNormal];
   _selectedPinType = row;
-}
-
--(void)dismissActionSheet{
-  if (actionSheet){
-    [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
-    [actionSheet release];
-  }
 }
 
 - (Boolean) checkDescription{

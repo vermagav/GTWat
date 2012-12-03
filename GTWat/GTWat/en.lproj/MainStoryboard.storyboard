@@ -115,8 +115,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="slideFrameDown2" destination="ewM-gw-81F" eventType="editingDidEnd" id="FIP-1J-qXA"/>
-                                            <action selector="slideFrameUp2" destination="ewM-gw-81F" eventType="editingDidBegin" id="uYo-U5-cLa"/>
+                                            <action selector="getDate:" destination="ewM-gw-81F" eventType="editingDidBegin" id="9r5-ru-Cz3"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s0i-M3-B5w">
@@ -581,6 +580,7 @@
                 <relationship kind="action" name="cancel:"/>
                 <relationship kind="action" name="changePinType:"/>
                 <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="getDate:"/>
                 <relationship kind="outlet" name="changePinTypeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="description" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="location" candidateClass="UITextField"/>
@@ -595,6 +595,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DisplayViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addComment:"/>
+                <relationship kind="action" name="changePinType:"/>
                 <relationship kind="action" name="done:"/>
                 <relationship kind="outlet" name="descLabel" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
