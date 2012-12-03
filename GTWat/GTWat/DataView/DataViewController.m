@@ -54,6 +54,8 @@
   region.span = span;
   isTypeSelected = false;
   
+  currentOffest = 0;
+  
   // Change default map view to above
   [map setRegion:region animated:YES];
   
@@ -173,11 +175,11 @@
 
 -(IBAction) slideFrameDown1;
 {
-  [self slideFrame:NO with: 50];
+  [self slideFrame:NO with:0];
 }
 -(IBAction) slideFrameDown2;
 {
-  [self slideFrame:NO with: 110];
+  [self slideFrame:NO with:0];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
@@ -185,7 +187,7 @@
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-  [self slideFrame:NO with:210];
+  [self slideFrame:NO with:0];
 }
 
 -(void) slideFrame:(BOOL) up with: (int) dist
@@ -198,7 +200,18 @@
   [UIView beginAnimations: @"anim" context: nil];
   [UIView setAnimationBeginsFromCurrentState: YES];
   [UIView setAnimationDuration: movementDuration];
-  scrollView.frame = CGRectOffset(scrollView.frame, 0, movement);
+  if (movement!=currentOffest)
+    scrollView.frame = CGRectOffset(scrollView.frame, 0, (movement - currentOffest));
+  currentOffest = movement;
+  [UIView commitAnimations];
+}
+
+-(void)resetFrame: (int) move{
+  [UIView beginAnimations: @"anim" context: nil];
+  [UIView setAnimationBeginsFromCurrentState: YES];
+  const float movementDuration = 0.3f; // tweak as needed
+  [UIView setAnimationDuration: movementDuration];
+  scrollView.frame = CGRectOffset(scrollView.frame, 0, move);
   [UIView commitAnimations];
 }
 
