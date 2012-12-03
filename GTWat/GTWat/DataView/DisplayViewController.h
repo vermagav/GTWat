@@ -23,6 +23,7 @@
   IBOutlet UITextView* newCommentTextView;
   
   IBOutlet UINavigationBar* navBar;
+  int currentOffset;
   
   NSMutableArray* comments;
 }

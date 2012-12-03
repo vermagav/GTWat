@@ -54,7 +54,7 @@
   region.span = span;
   isTypeSelected = false;
   
-  currentOffest = 0;
+  currentOffset = 0;
   
   // Change default map view to above
   [map setRegion:region animated:YES];
@@ -200,9 +200,9 @@
   [UIView beginAnimations: @"anim" context: nil];
   [UIView setAnimationBeginsFromCurrentState: YES];
   [UIView setAnimationDuration: movementDuration];
-  if (movement!=currentOffest)
-    scrollView.frame = CGRectOffset(scrollView.frame, 0, (movement - currentOffest));
-  currentOffest = movement;
+  if (movement!=currentOffset)
+    scrollView.frame = CGRectOffset(scrollView.frame, 0, (movement - currentOffset));
+  currentOffset = movement;
   [UIView commitAnimations];
 }
 

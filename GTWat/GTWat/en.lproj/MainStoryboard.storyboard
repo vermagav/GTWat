@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Gkv-35-vlk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Gkv-35-vlk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -321,9 +321,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="ewM-gw-81F" id="FjT-1b-ZnC"/>
-                                                </connections>
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -349,6 +346,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="WYR-6r-QGd" id="i2M-8u-VJT"/>
+                                                </connections>
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -618,6 +618,9 @@
                 <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="forceSync:"/>
                 <relationship kind="action" name="restoreApp:"/>
+                <relationship kind="action" name="switchAlerts:"/>
+                <relationship kind="action" name="switchEvents:"/>
+                <relationship kind="action" name="switchQuestions:"/>
                 <relationship kind="outlet" name="alertSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="eventSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="idLabel" candidateClass="UILabel"/>

@@ -34,7 +34,7 @@ typedef enum PinType {
   
   NSArray* pinTypes;
   Boolean isTypeSelected;
-  int currentOffest;
+  int currentOffset;
   
   UIActionSheet *actionSheet;
 

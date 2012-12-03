@@ -51,6 +51,7 @@
   gestureRecognizer.cancelsTouchesInView = NO;
   NSString* type = NSStringFromClass([description class]);
   NSLog(@"Type: %@", type);
+  currentOffset = 0;
   
   [subjectLabel setText:subject];
   [descLabel setText:description];
@@ -105,8 +106,6 @@
   
   int commentWidth = 280;
   int commentHeight = 80;
-  
-  int maxHeight = 80;
   
   int spacingBetween = 90;
   
@@ -178,7 +177,7 @@
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-  [self slideFrame:NO with:210];
+  [self slideFrame:NO with:0];
 }
 
 -(void) slideFrame:(BOOL) up with: (int) dist
@@ -191,7 +190,9 @@
   [UIView beginAnimations: @"anim" context: nil];
   [UIView setAnimationBeginsFromCurrentState: YES];
   [UIView setAnimationDuration: movementDuration];
-  scrollView.frame = CGRectOffset(scrollView.frame, 0, movement);
+  if (movement!=currentOffset)
+    scrollView.frame = CGRectOffset(scrollView.frame, 0, (movement - currentOffset));
+  currentOffset = movement;
   [UIView commitAnimations];
 }
 
