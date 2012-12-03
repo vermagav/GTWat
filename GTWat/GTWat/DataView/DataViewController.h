@@ -33,6 +33,7 @@ typedef enum PinType {
   IBOutlet MKMapView* map;
   
   NSArray* pinTypes;
+  Boolean isTypeSelected;
   
   UIActionSheet *actionSheet;
 

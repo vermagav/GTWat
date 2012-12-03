@@ -52,6 +52,7 @@
   span.latitudeDelta  = 0.005;
   span.longitudeDelta = 0.005;
   region.span = span;
+  isTypeSelected = false;
   
   // Change default map view to above
   [map setRegion:region animated:YES];
@@ -95,6 +96,7 @@
   [actionSheet setBounds:CGRectMake(0, 0, 320, 485)];
   [changePinTypeButton setTitle:@"Pin Type: Questions" forState:(UIControlStateNormal)];
   _selectedPinType = 0;
+  isTypeSelected = true;
 }
 
 - (IBAction)done:(id)sender {
@@ -104,24 +106,36 @@
   //NSString* timeStr = [time text];
   NSString* subjectStr = [subject text];
   int uId = [Utilities getUserId];
+   
+  if ([desc isEqualToString:@""] || [subjectStr isEqualToString:@""] || !isTypeSelected){
+    UIAlertView * emptyAlert = [[UIAlertView alloc] initWithTitle:@"Empty Field"
+                                                         message:@"Please enter subject, description and type of your Pin."
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK."
+                                               otherButtonTitles:nil];
+    [emptyAlert show];
+    [emptyAlert release];
+    
+  }else{
   
-  double latitude = _currLocation.coordinate.latitude;
-  double longitude = _currLocation.coordinate.longitude;
-  NSString* locStr = [NSString stringWithFormat:@"%f,%f", longitude, latitude ];
+    double latitude = _currLocation.coordinate.latitude;
+    double longitude = _currLocation.coordinate.longitude;
+    NSString* locStr = [NSString stringWithFormat:@"%f,%f", longitude, latitude ];
   
-  NSDate* currDate = [NSDate date];
-  Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:uId withSubject:subjectStr withDescription:desc withLocation:locStr withSpecLocation:locationStr withDate:currDate withAddDate:currDate withPinType: _selectedPinType];
+    NSDate* currDate = [NSDate date];
+    Pin* newPin = [[Pin alloc] initWithEntryId:NULL withUserId:uId withSubject:subjectStr withDescription:desc withLocation:locStr withSpecLocation:locationStr withDate:currDate withAddDate:currDate withPinType: _selectedPinType];
   
   
-  [mainView addNewPin:newPin];
+    [mainView addNewPin:newPin];
   
-  UIAlertView *shareAlert = [[UIAlertView alloc] initWithTitle:@"Share Your Post"
-                                                      message:@"Would you like to share this post on your Social Network?"
-                                                     delegate:self
-                                            cancelButtonTitle:@"No Thanks."
-                                            otherButtonTitles:@"Yes, Please!", nil];
-  [shareAlert show];
-  [shareAlert release];
+    UIAlertView *shareAlert = [[UIAlertView alloc] initWithTitle:@"Share Your Post"
+                                                        message:@"Would you like to share this post on your Social Network?"
+                                                        delegate:self
+                                              cancelButtonTitle:@"No Thanks."
+                                              otherButtonTitles:@"Yes, Please!", nil];
+    [shareAlert show];
+    [shareAlert release];
+  }
 }
 
 - (void)getStared: (MKPointAnnotation *) pa with: (MKMapView *) mapView{
@@ -133,7 +147,7 @@
 {
   NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
   if ([title isEqualToString:@"Yes, Please!"]){
-      NSString *textToShare = @"test!"; //Change what we share here.
+    NSString *textToShare = [NSString stringWithFormat:@"I just posted a new %@ on GTWat: %@!", [self typeString],[subject text]]; //Change what we share here.
       NSArray *activityItems = @[textToShare];
       UIActivityViewController *activityVC =
       [[UIActivityViewController alloc] initWithActivityItems:activityItems
@@ -224,6 +238,21 @@
   }
 }
 
+- (NSString*) typeString{
+  switch (_selectedPinType) {
+    case Question:
+      return @"Question";
+      break;
+    case Alert:
+      return @"Alert";
+    case Event:
+      return @"Event";
+    default:
+      break;
+  }
+                               
+}
+                             
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
   [super dealloc];
