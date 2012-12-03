@@ -23,6 +23,9 @@
   _date = date;
   _text = text;
   
+  [_text retain];
+  [_date retain];
+  
   return self;
 }
 

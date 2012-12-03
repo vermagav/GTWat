@@ -612,9 +612,6 @@
                 <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="forceSync:"/>
                 <relationship kind="action" name="restoreApp:"/>
-                <relationship kind="action" name="switchAlerts:"/>
-                <relationship kind="action" name="switchEvents:"/>
-                <relationship kind="action" name="switchQuestions:"/>
                 <relationship kind="outlet" name="alertSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="eventSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="idLabel" candidateClass="UILabel"/>
