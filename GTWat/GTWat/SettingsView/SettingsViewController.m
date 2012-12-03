@@ -33,7 +33,15 @@
   int uid = [Utilities getUserId];
   NSString* idStr = [NSString stringWithFormat:@"%d", uid];
   [idLabel setText:idStr];
-  
+  if (!_showAlerts){
+    [alertSwitch setOn:(FALSE)];
+  }
+  if (!_showEvents){
+    [eventSwitch setOn:(FALSE)];
+  }
+  if (!_showQuestions){
+    [questionSwitch setOn:(FALSE)];
+  }
 	// Do any additional setup after loading the view.
 }
 
@@ -48,6 +56,7 @@
 }
 
 -(IBAction)done:(id)sender {
+  [mainView refreshPins];
   [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

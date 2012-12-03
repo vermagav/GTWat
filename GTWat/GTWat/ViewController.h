@@ -26,6 +26,7 @@
   
   PinAnnotationView* newPin;
   PinAnnotationView* selectedPin;
+  NSArray* paArrays;
   
   BOOL _showAlerts;
   BOOL _showQuestions;
@@ -45,6 +46,7 @@
 -(void) longPressOccurred: (UIGestureRecognizer*) recognizer;
 -(void) addNewPin:(Pin*) pin;
 -(void) loadPins;
+-(void) refreshPins;
 - (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation;
 
 @end

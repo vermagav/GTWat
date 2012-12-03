@@ -73,14 +73,15 @@
   
   // Show user location (blue dot)
   self->mapView.showsUserLocation = YES;
-  
+  _showAlerts = true;
+  _showEvents = true;
+  _showQuestions = true;
   [self loadPins];
   [self getCommentsForPin:1494771517];
 
 }
 
 -(void) loadPins {
-  
   Cache* cache = [Cache getCacheInst];
   
   NSMutableDictionary* pinDict;
@@ -89,24 +90,34 @@
   for(int i = 0; i < [keys count]; i++) {
     NSNumber* key = [keys objectAtIndex:i];
     Pin* pin = [pinDict objectForKey:key];
+    if ((pin.pinType == 0 && _showQuestions) || (pin.pinType == 1 && _showAlerts) || (pin.pinType == 2 && _showEvents)){
+      NSLog([NSString stringWithFormat:@"User: %d", pin.pinType]);
+            NSString* locationStr = [pin location];
+      NSArray* locArray = [locationStr componentsSeparatedByString:@","];
+      NSString* longitudeStr = [locArray objectAtIndex:0];
+      NSString* latStr = [locArray objectAtIndex:1];
+      
+      double longitude = [longitudeStr doubleValue];
+      double latitude = [latStr doubleValue];
     
-    NSString* locationStr = [pin location];
-    NSArray* locArray = [locationStr componentsSeparatedByString:@","];
-    NSString* longitudeStr = [locArray objectAtIndex:0];
-    NSString* latStr = [locArray objectAtIndex:1];
-    
-    double longitude = [longitudeStr doubleValue];
-    double latitude = [latStr doubleValue];
-    
-    CLLocation* pinLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+      CLLocation* pinLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
 
-    PinAnnotationView* pa = [[PinAnnotationView alloc] init];
-    pa.coordinate = pinLocation.coordinate;
-    pa.title = [pin subject];
-    [pa setPin:pin];
+      PinAnnotationView* pa = [[PinAnnotationView alloc] init];
+      pa.coordinate = pinLocation.coordinate;
+      pa.title = [pin subject];
+      [pa setPin:pin];
     
-    [mapView addAnnotation:pa];
+      [mapView addAnnotation:pa];
+      [pa release];
+    }
   }
+}
+
+-(void) refreshPins {
+  for (PinAnnotationView *pa in mapView.annotations){
+    [mapView removeAnnotation:pa];
+  }  
+  [self loadPins];
 }
 
 /*
@@ -181,10 +192,11 @@
 - (MKAnnotationView *)mapView:(MKMapView *)sender viewForAnnotation:(id < MKAnnotation >)annotation
 {
   static NSString *reuseId = @"StandardPin";
-  
   MKPinAnnotationView *aView = (MKPinAnnotationView *)[sender dequeueReusableAnnotationViewWithIdentifier:reuseId];
-  if (aView == nil && [annotation isKindOfClass:[PinAnnotationView class]]){
+
+  if (aView == nil)
     aView = (MKPinAnnotationView*)[[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId] autorelease];
+  if ([annotation isKindOfClass:[PinAnnotationView class]]){
     switch ([[((PinAnnotationView *)annotation) pin] pinType]) {
       case 0:
         [aView setPinColor:MKPinAnnotationColorGreen];
@@ -194,11 +206,10 @@
         break;
       case 2:
         [aView setPinColor:MKPinAnnotationColorPurple];
+        break;        
       default:
         break;
     }
-    //aView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
-     //                                        reuseIdentifier:reuseId] autorelease];
     aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     aView.canShowCallout = YES;
   }
@@ -235,6 +246,9 @@ calloutAccessoryControlTapped:(UIControl *)control
   }
   else if ([destination isKindOfClass: [SettingsViewController class]]){
     SettingsViewController* settingsController = (SettingsViewController*) [segue destinationViewController];
+    [settingsController setShowAlerts:_showAlerts];
+    [settingsController setShowEvents:_showEvents];
+    [settingsController setShowQuestions:_showQuestions];
     [settingsController setMainView:self];
   }
   else if([destination isKindOfClass: [DisplayViewController class]]){

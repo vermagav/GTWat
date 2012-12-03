@@ -19,6 +19,9 @@
 }
 
 @property(nonatomic, retain) ViewController* mainView;
+@property BOOL showAlerts;
+@property BOOL showEvents;
+@property BOOL showQuestions;
 
 -(IBAction)done:(id)sender;
 
