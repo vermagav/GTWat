@@ -182,11 +182,21 @@
 {
   static NSString *reuseId = @"StandardPin";
   
-  MKPinAnnotationView *aView = (MKPinAnnotationView *)[sender
-                                                       dequeueReusableAnnotationViewWithIdentifier:reuseId];
-  if (aView == nil)
-  {
+  MKPinAnnotationView *aView = (MKPinAnnotationView *)[sender dequeueReusableAnnotationViewWithIdentifier:reuseId];
+  if (aView == nil && [annotation isKindOfClass:[PinAnnotationView class]]){
     aView = (MKPinAnnotationView*)[[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId] autorelease];
+    switch ([[((PinAnnotationView *)annotation) pin] pinType]) {
+      case 0:
+        [aView setPinColor:MKPinAnnotationColorGreen];
+        break;
+      case 1:
+        [aView setPinColor:MKPinAnnotationColorRed];
+        break;
+      case 2:
+        [aView setPinColor:MKPinAnnotationColorPurple];
+      default:
+        break;
+    }
     //aView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
      //                                        reuseIdentifier:reuseId] autorelease];
     aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
