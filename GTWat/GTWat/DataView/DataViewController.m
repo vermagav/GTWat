@@ -109,7 +109,7 @@
   NSString* subjectStr = [subject text];
   int uId = [Utilities getUserId];
    
-  if ([desc isEqualToString:@""] || [subjectStr isEqualToString:@""] || !isTypeSelected){
+  if (![self checkDescription]|| [subjectStr isEqualToString:@""] || !isTypeSelected){
     UIAlertView * emptyAlert = [[UIAlertView alloc] initWithTitle:@"Empty Field"
                                                          message:@"Please enter subject, description and type of your Pin."
                                                         delegate:nil
@@ -183,6 +183,7 @@
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
+  if (![self checkDescription]) [description setText:@""];
   [self slideFrame:YES with:210];
 }
 
@@ -249,6 +250,13 @@
     [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
     [actionSheet release];
   }
+}
+
+- (Boolean) checkDescription{
+  if ([description.text isEqualToString:@"Description goes here!"] || [description.text isEqualToString:@""])
+    return false;
+  else
+    return true;
 }
 
 - (NSString*) typeString{

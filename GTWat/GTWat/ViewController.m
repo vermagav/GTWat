@@ -37,7 +37,7 @@
   UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
   [mapView addGestureRecognizer:longPressRec];
   [mapView setDelegate:self];
-  [longPressRec release];	
+  [longPressRec release];
 
   // Initialize map view observer for zooming to user location
   [self->mapView.userLocation addObserver:self
@@ -76,6 +76,9 @@
   _showAlerts = true;
   _showEvents = true;
   _showQuestions = true;
+  
+  updateUserLocation = true;
+  //[mapView setCenterCoordinate:mapView.userLocation.location.coordinate animated:YES];
   [self loadPins];
   [self getCommentsForPin:1494771517];
 
@@ -91,7 +94,6 @@
     NSNumber* key = [keys objectAtIndex:i];
     Pin* pin = [pinDict objectForKey:key];
     if ((pin.pinType == 0 && _showQuestions) || (pin.pinType == 1 && _showAlerts) || (pin.pinType == 2 && _showEvents)){
-      NSLog([NSString stringWithFormat:@"User: %d", pin.pinType]);
             NSString* locationStr = [pin location];
       NSArray* locArray = [locationStr componentsSeparatedByString:@","];
       NSString* longitudeStr = [locArray objectAtIndex:0];
@@ -106,9 +108,8 @@
       pa.coordinate = pinLocation.coordinate;
       pa.title = [pin subject];
       [pa setPin:pin];
-    
+      
       [mapView addAnnotation:pa];
-      [pa release];
     }
   }
 }
@@ -189,10 +190,6 @@
   return [circleView autorelease];
 }*/
 
-- (void)mapView:(MKMapView *)mView didUpdateUserLocation:(MKUserLocation *)userLocation
-{
-  [mapView setCenterCoordinate:mView.userLocation.location.coordinate animated:YES];
-}
 
 - (MKAnnotationView *)mapView:(MKMapView *)sender viewForAnnotation:(id < MKAnnotation >)annotation
 {
@@ -213,9 +210,12 @@
         break;        
       default:
         break;
+    }
     aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     aView.canShowCallout = YES;
-    }
+  }
+  if ([annotation isKindOfClass:[MKUserLocation class]]){
+    [mapView setCenterCoordinate:mapView.userLocation.location.coordinate animated:YES];
   }
   
   aView.annotation = annotation;
@@ -255,9 +255,10 @@ calloutAccessoryControlTapped:(UIControl *)control
     [settingsController setShowQuestions:_showQuestions];
     [settingsController setMainView:self];
   }
-  else if([destination isKindOfClass: [DisplayViewController class]]){
+  else if([destination isKindOfClass: [DisplayViewController class]] && updateUserLocation){
     DisplayViewController* display = (DisplayViewController*) [segue destinationViewController];
     [display setPin: [selectedPin pin]];
+    updateUserLocation = false;
   }
 }
 

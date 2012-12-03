@@ -31,6 +31,7 @@
   BOOL _showAlerts;
   BOOL _showQuestions;
   BOOL _showEvents;
+  BOOL updateUserLocation;
   
   CLLocation* currLocation;
   
