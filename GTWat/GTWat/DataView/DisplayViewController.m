@@ -94,11 +94,11 @@
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-  [self slideFrame:YES with:215];
+  [self slideFrame:YES with:290];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-  [self slideFrame:NO with:215];
+  [self slideFrame:NO with:290];
 }
 
 -(void) slideFrame:(BOOL) up with: (int) dist
