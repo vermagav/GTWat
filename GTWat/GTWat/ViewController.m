@@ -189,14 +189,18 @@
   return [circleView autorelease];
 }*/
 
+- (void)mapView:(MKMapView *)mView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+  [mapView setCenterCoordinate:mView.userLocation.location.coordinate animated:YES];
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)sender viewForAnnotation:(id < MKAnnotation >)annotation
 {
   static NSString *reuseId = @"StandardPin";
   MKPinAnnotationView *aView = (MKPinAnnotationView *)[sender dequeueReusableAnnotationViewWithIdentifier:reuseId];
-
-  if (aView == nil)
-    aView = (MKPinAnnotationView*)[[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId] autorelease];
   if ([annotation isKindOfClass:[PinAnnotationView class]]){
+    if (aView == nil)
+      aView = (MKPinAnnotationView*)[[[MKPinAnnotationView alloc] initWithAnnotation:annotation   reuseIdentifier:reuseId] autorelease];
     switch ([[((PinAnnotationView *)annotation) pin] pinType]) {
       case 0:
         [aView setPinColor:MKPinAnnotationColorGreen];
@@ -209,9 +213,9 @@
         break;        
       default:
         break;
-    }
     aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     aView.canShowCallout = YES;
+    }
   }
   
   aView.annotation = annotation;
