@@ -30,4 +30,6 @@
 -(IBAction)done:(id)sender;
 -(void) displayComments;
 
+-(IBAction)addComment:(id)sender;
+
 @end

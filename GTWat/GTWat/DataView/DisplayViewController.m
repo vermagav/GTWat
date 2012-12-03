@@ -133,7 +133,6 @@
   
   CGSize size = scrollView.frame.size;
   
-  NSLog(@"ScrollView size: %f %f", size.width, size.height);
   size.width = 320;
   size.height = 504+400;
   
@@ -144,6 +143,10 @@
   
   [scrollView setFrame:CGRectMake(0, 40, 320, 504)];
   [scrollView setContentSize:newScrollSize];
+}
+
+-(IBAction)addComment:(id)sender {
+  
 }
 
 -(IBAction)done:(id)sender {
