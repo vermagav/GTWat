@@ -28,5 +28,6 @@
 @property (nonatomic, retain) Pin* pin;
 
 -(IBAction)done:(id)sender;
+-(void) displayComments;
 
 @end

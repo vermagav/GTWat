@@ -26,9 +26,14 @@
     return self;
 }
 
+-(void) viewDidLayoutSubviews {
+  [self viewDidLoad];
+}
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
   UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
   [self.view addGestureRecognizer:gestureRecognizer];
   [gestureRecognizer release];
@@ -86,7 +91,50 @@
   // Change default map view to above
   [map setRegion:region animated:YES];
   
+  [self displayComments];
+  
 	// Do any additional setup after loading the view.
+}
+
+-(void) displayComments {
+  
+  int commentStartX = 20;
+  int commentStartY = 485;
+  
+  int commentWidth = 280;
+  int commentHeight = 80;
+  
+  int maxHeight = 80;
+  
+  int borderThickness = 2;
+  
+  CGRect border = CGRectMake(commentStartX-borderThickness, commentStartY-borderThickness, commentWidth+2*borderThickness, commentHeight+2*borderThickness);
+  UIView* bview = [[UIView alloc] initWithFrame:border];
+  [bview setBackgroundColor:[UIColor darkGrayColor]];
+  [self->scrollView addSubview:bview];
+  
+  CGRect rect = CGRectMake(commentStartX, commentStartY, commentWidth, commentHeight);
+  UITextView* textView = [[UITextView alloc] initWithFrame:rect];
+  [textView setText:@"YAY"];
+  
+  [scrollView addSubview:textView];
+  
+  CGSize size = scrollView.frame.size;
+  
+  NSLog(@"ScrollView size: %f %f", size.width, size.height);
+  size.width = 320;
+  size.height = 504+400;
+  
+  CGSize mainViewSize = self.view.frame.size;
+  float width = mainViewSize.width;
+  float height = mainViewSize.height;
+  
+  CGSize newScrollSize = CGSizeMake(width, size.height+maxHeight+20);
+  
+  [scrollView setFrame:CGRectMake(0, 40, 320, 504)];
+  [scrollView setContentSize:newScrollSize];
+  
+  //[[self view] autoresizesSubviews];
 }
 
 -(IBAction)done:(id)sender {
@@ -94,11 +142,11 @@
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-  [self slideFrame:YES with:290];
+  [self slideFrame:YES with:210];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-  [self slideFrame:NO with:290];
+  [self slideFrame:NO with:210];
 }
 
 -(void) slideFrame:(BOOL) up with: (int) dist
@@ -114,7 +162,6 @@
   scrollView.frame = CGRectOffset(scrollView.frame, 0, movement);
   [UIView commitAnimations];
 }
-
 
 //Hide Keyboard
 - (void) hideKeyboard {
