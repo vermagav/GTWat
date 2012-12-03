@@ -20,9 +20,11 @@
   IBOutlet UILabel* time;
   IBOutlet UIScrollView* scrollView;
   
+  IBOutlet UITextView* newCommentTextView;
+  
   IBOutlet UINavigationBar* navBar;
   
-  NSArray* comments;
+  NSMutableArray* comments;
 }
 
 @property (nonatomic, retain) Pin* pin;

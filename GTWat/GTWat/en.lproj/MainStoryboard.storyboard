@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Gkv-35-vlk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Gkv-35-vlk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -367,6 +367,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addComment:" destination="WYR-6r-QGd" eventType="touchUpInside" id="7fz-1S-ZBC"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckn-mI-1Sn">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -431,6 +434,7 @@
                         <outlet property="locationLabel" destination="XEF-ap-ycJ" id="Cpr-Vd-Arp"/>
                         <outlet property="map" destination="grD-S6-qjj" id="kXh-2M-4Za"/>
                         <outlet property="navBar" destination="al4-Y7-4QB" id="tza-0M-Y2m"/>
+                        <outlet property="newCommentTextView" destination="Ax0-0c-Lda" id="Bal-4U-91y"/>
                         <outlet property="scrollView" destination="nwt-pQ-uHr" id="rCT-Nq-kYD"/>
                         <outlet property="subjectLabel" destination="5Ae-t9-Lta" id="DRl-Zq-qqj"/>
                         <outlet property="time" destination="eG9-8T-iTB" id="CLA-fR-4Zo"/>
@@ -590,11 +594,13 @@
         <class className="DisplayViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DisplayViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addComment:"/>
                 <relationship kind="action" name="done:"/>
                 <relationship kind="outlet" name="descLabel" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="map" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="newCommentTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="subjectLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="time" candidateClass="UILabel"/>
@@ -612,9 +618,6 @@
                 <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="forceSync:"/>
                 <relationship kind="action" name="restoreApp:"/>
-                <relationship kind="action" name="switchAlerts:"/>
-                <relationship kind="action" name="switchEvents:"/>
-                <relationship kind="action" name="switchQuestions:"/>
                 <relationship kind="outlet" name="alertSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="eventSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="idLabel" candidateClass="UILabel"/>

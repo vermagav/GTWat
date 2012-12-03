@@ -8,6 +8,10 @@
 
 #import "DisplayViewController.h"
 #import "Pin.h"
+#import "Comment.h"
+#import "Utilities.h"
+#import "SyncHelper.h"
+#import "Cache.h"
 
 @interface DisplayViewController ()
 
@@ -68,7 +72,7 @@
   }
   navBar.topItem.title = pinTypeStr;
   
-  comments = [pin comments];
+  comments = (NSMutableArray*)[pin comments];
   
   NSString* locationStr = [pin location];
   NSArray* locArray = [locationStr componentsSeparatedByString:@","];
@@ -146,7 +150,22 @@
 }
 
 -(IBAction)addComment:(id)sender {
+  int entryId = [pin entryId];
+  int uId = [Utilities getUserId];
+  NSDate* currDate = [NSDate date];
+  NSString* commentText = [newCommentTextView text];
   
+  Comment* comment = [[Comment alloc] initWithCommentId:NULL withEntryId:entryId withUserId: uId withDate:currDate withText:commentText];
+  
+  SyncHelper* syncher = [SyncHelper getSyncHelper];
+  [syncher addComment:comment];
+  Cache* cache = [Cache getCacheInst];
+  [cache writeCommentToDB:comment];
+  
+  [comments addObject: comment];
+  [self displayComments];
+  
+  [newCommentTextView setText:@""];
 }
 
 -(IBAction)done:(id)sender {
