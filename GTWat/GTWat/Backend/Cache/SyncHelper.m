@@ -228,7 +228,7 @@
   NSString* location = [pin location];
   NSString* specLocation = [pin specificLocation];
   NSString* subject = [pin subject];
-  NSString* description = [pin description];
+  NSString* description = [NSString stringWithFormat:@"%d:%@", [pin pinType], [pin description]];
   
   NSDateFormatter* dateReader = [[NSDateFormatter alloc] init];
   [dateReader setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
