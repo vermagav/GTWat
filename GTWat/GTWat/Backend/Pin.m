@@ -36,6 +36,19 @@
   [_date retain];
   _addDate = addDate;
   
+  NSArray *descParse = [description componentsSeparatedByString:@":"];
+  int numElements = [descParse count];
+  
+  NSString* pinTypeStr = @"";
+  if(numElements == 2) {
+    _description = [descParse objectAtIndex:1];
+    pinTypeStr = [descParse objectAtIndex:0];
+    _pinType = [pinTypeStr intValue];
+  }
+  else {
+    _pinType = -1;
+  }
+  
   return self;
 }
 
