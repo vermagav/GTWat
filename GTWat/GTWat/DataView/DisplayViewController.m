@@ -159,8 +159,9 @@
   
   SyncHelper* syncher = [SyncHelper getSyncHelper];
   [syncher addComment:comment];
-  Cache* cache = [Cache getCacheInst];
-  [cache writeCommentToDB:comment];
+  [syncher sync:nil];
+  //Cache* cache = [Cache getCacheInst];
+  //[cache writeCommentToDB:comment];
   
   [comments addObject: comment];
   [self displayComments];
